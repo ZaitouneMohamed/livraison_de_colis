@@ -44,8 +44,9 @@ Route::middleware(['auth:sanctum', 'verified','user'])->prefix('is-admin')->grou
     Route::get('/', [userpanelController::class, 'index'])->name('userpanel.home'); // user home
     Route::resource('employees', employeeController::class); // employee home
     Route::resource('colis', colisCrudController::class); // (CRUD) colis
-    Route::get('/colis_a_traiter', [userpanelController::class, 'traiter_colis'])->name('user.colis.traiter'); // user colis a traiter
-    Route::get('/view_coli/{colis_id}', [userpanelController::class, 'view_coli'])->name('user.coli.view');
+    Route::get('colis_a_traiter', [userpanelController::class, 'traiter_colis'])->name('user.colis.traiter'); // user colis a traiter
+    Route::get('view_coli/{colis_id}', [userpanelController::class, 'view_coli'])->name('user.coli.view');
+    Route::get('returned_colis', [userpanelController::class, 'returned_colis'])->name('user.coli.returned'); // user les colis returné
 });
 
 // for admin

@@ -74,7 +74,8 @@ class colisCrudController extends Controller
      */
     public function show($id)
     {
-        //
+        $coli = couli::find($id);
+        return view('is-admin.content.colis.view2',compact('coli'));
     }
 
     /**

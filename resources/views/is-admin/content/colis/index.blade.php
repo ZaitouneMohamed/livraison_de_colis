@@ -129,7 +129,8 @@
                                             <td>{{ $coli->produit }}</td>
                                             <td>
                                                 @if ($coli->statue == 0 || $coli->statue == 2) 
-                                                        <div class="d-flex">
+                                                <div class="d-flex">
+                                                            <a href="{{route('colis.show',$coli->id)}}" class="btn btn-primary" style="margin-right: 6px"><i class="fa-solid fa-eye"></i></a>
                                                             <a href="{{route('colis.edit',$coli->id)}}" class="btn btn-warning" style="margin-right: 6px"><i class="fa-sharp fa-solid fa-pen-to-square"></i></a>
                                                             <form action="{{ route('colis.destroy', $coli->id) }}"
                                                                 method="post">
@@ -137,7 +138,6 @@
                                                                 @method('delete')
                                                                 <button class="btn btn-danger" type="submit"><i class="fa-solid fa-trash"></i></button>
                                                             </form>
-                                                            <a href="{{route('colis.show',$coli->id)}}" class="btn btn-warning" style="margin-right: 6px"><i class="fa-sharp fa-solid fa-pen-to-square"></i></a>
                                                         </div>
                                                 @endif
                                                 @if ($coli->statue == 1)
@@ -148,4 +148,16 @@
                                             </td>
                                         </tr>
                                     @endforeach
-           
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+
+    </div>
+@endsection

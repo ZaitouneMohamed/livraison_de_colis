@@ -23,10 +23,10 @@ class couli extends Model
     ];
 
     public function user(){
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class ,'user_id');
     }
 
     public function order(){
-        return $this->hasMany(order::class);
+        return $this->hasMany(order::class , 'couli_id');
     }
 }

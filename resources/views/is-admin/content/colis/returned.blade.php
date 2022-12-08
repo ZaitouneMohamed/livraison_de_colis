@@ -21,6 +21,7 @@
                 <!-- DataTales Example -->
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
+                        
                         <h6 class="m-0 font-weight-bold text-center">user name : {{ $coli->user->name }}</h6>
                         <p class="card-text text-center">call : {{$coli->user->phone}}</p>
                     </div>
@@ -33,16 +34,11 @@
                                 <li class="list-group-item">adresse :{{$coli->adresse}}</li>
                                 <li class="list-group-item">produit :{{$coli->produit}}</li>
                                 <li class="list-group-item">note :{{$coli->note}}</li>
-                                <li class="list-group-item">place now :{{$coli->order->count()}}</li>
                             </ul>
                         </center>
                     </div>
                 </div>
-
             </div>
         </div>
-
-
-
     </div>
 @endsection

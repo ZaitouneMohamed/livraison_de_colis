@@ -20,11 +20,11 @@ class order extends Model
     ];
 
     public function colis(){
-        return $this->belongsTo(couli::class);
+        return $this->belongsTo(couli::class , 'couli_id');
     }
 
     public function livreur(){
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class , 'livreur_id');
     }
 
     public function user(){

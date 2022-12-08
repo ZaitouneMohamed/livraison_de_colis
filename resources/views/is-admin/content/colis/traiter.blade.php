@@ -60,7 +60,7 @@
                                             </td>
                                             <td>{{ $coli->colis->produit }}</td>
                                             <td>
-                                                <a href="{{route('user.coli.view',$coli->colis_id)}}" class="btn btn-primary">
+                                                <a href="{{route('user.coli.view',$coli->colis->id)}}" class="btn btn-primary">
                                                     <i class="fa-solid fa-eye"></i>
                                                 </a>
                                             </td>

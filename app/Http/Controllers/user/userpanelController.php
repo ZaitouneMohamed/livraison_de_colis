@@ -25,4 +25,9 @@ class userpanelController extends Controller
         $order = DB::table('orders')->where('couli_id', $colis_id);
         return view("is-admin.content.colis.view",compact('coli','order'));
     }
+
+    public function returned_colis() {
+        $coli = couli::where('statue',2);
+        return view('is-admin.content.colis.returned',compact('coli'));
+    }
 }

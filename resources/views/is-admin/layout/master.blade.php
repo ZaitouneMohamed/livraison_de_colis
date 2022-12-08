@@ -68,7 +68,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="{{route('colis.index')}}">List Coulis</a>
                         <a class="collapse-item" href="{{route('user.colis.traiter')}}">Coulis A traiter</a>
-                        <a class="collapse-item" href="cards.html">Archive</a>
+                        <a class="collapse-item" href="{{route('user.coli.returned')}}">Archive</a>
                     </div>
                 </div>
             </li>
