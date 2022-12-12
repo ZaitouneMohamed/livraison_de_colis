@@ -34,8 +34,7 @@
                                         <th>Ville</th>
                                         <th>prix</th>
                                         <th>date d'ajout</th>
-                                        <th>Date mise a joure</th>
-                                        <th>Etat</th>
+                                        <th>Etat</th>   
                                         <th>produit</th>
                                         <th>action</th>
                                     </tr>
@@ -44,12 +43,11 @@
                                     @foreach ($colis as $coli)
                                         <tr>
                                             <td>{{ $coli->id }}</td>
-                                            <td>{{ $coli->colis->telephone }}</td>
-                                            <td>{{ $coli->colis->destination }}</td>
-                                            <td>{{ $coli->colis->ville }}</td>
-                                            <td>{{ $coli->colis->prix }}</td>
+                                            <td>{{ $coli->telephone }}</td>
+                                            <td>{{ $coli->destination }}</td>
+                                            <td>{{ $coli->ville }}</td>
+                                            <td>{{ $coli->prix }}</td>
                                             <td>{{ $coli->created_at }}</td>
-                                            <td>{{ $coli->updated_at }}</td>
                                             <td>
                                                 @if ($coli->place_now == "")
                                                     <p class="btn btn-warning"><i class="fa-solid fa-spinner"></i></p>
@@ -58,9 +56,9 @@
                                                     {{ $coli->place_now }}
                                                 @endif
                                             </td>
-                                            <td>{{ $coli->colis->produit }}</td>
+                                            <td>{{ $coli->products }}</td>
                                             <td>
-                                                <a href="{{route('user.coli.view',$coli->colis->id)}}" class="btn btn-primary">
+                                                <a href="{{route('user.coli.view',$coli->id)}}" class="btn btn-primary">
                                                     <i class="fa-solid fa-eye"></i>
                                                 </a>
                                             </td>

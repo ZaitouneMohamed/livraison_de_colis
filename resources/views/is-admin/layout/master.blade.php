@@ -8,6 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+    <script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.polyfills.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
         integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -66,9 +69,9 @@
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="{{route('colis.index')}}">List Coulis</a>
-                        <a class="collapse-item" href="{{route('user.colis.traiter')}}">Coulis A traiter</a>
-                        <a class="collapse-item" href="{{route('user.coli.returned')}}">Archive</a>
+                        <a class="collapse-item" href="{{ route('colis.index') }}">List Coulis</a>
+                        <a class="collapse-item" href="{{ route('user.colis.traiter') }}">Coulis A traiter</a>
+                        <a class="collapse-item" href="{{ route('user.coli.returned') }}">Archive</a>
                     </div>
                 </div>
             </li>

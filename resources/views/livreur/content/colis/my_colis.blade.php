@@ -29,18 +29,37 @@
                                 <thead>
                                     <tr>
                                         <th>Name</th>
-                                        <th>email</th>
-                                        <th>destination</th>
+                                        <th>phone</th>
+                                        <th>total</th>
+                                        <th>destinataire</th>
                                         <th>adresse</th>
+                                        <th>statue</th>
+                                        <th>action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($orders as $order)
                                         <tr>
-                                            <td>{{ $order->livreur->name }}</td>
-                                            <td>{{ $order->colis->user->phone }}</td>
-                                            <td>{{ $order->colis->destination }}</td>
-                                            <td>{{ $order->colis->adresse }}</td>
+                                            <td>{{ auth()->user()->name }}</td>
+                                            <td>{{ $order->telephone }}</td>
+                                            <td>{{ $order->total }}</td>
+                                            <td>{{ $order->ville }}</td>
+                                            <td>{{ $order->adresse }}</td>
+                                            <td>{{ $order->statue }}</td>
+                                            <td>
+                                                <form action="{{ route('livreur.change.action') }}" method="post">
+                                                    @csrf
+                                                    <input type="hidden" name="coli_id" value="{{$order->id}}">
+                                                    <select name="statue" id="" onchange="this.form.submit()">
+                                                        <option value="">shose a plane</option>
+                                                        <option value="ramasser">Ramasser</option>
+                                                        <option value="emballer">Emballe</option>
+                                                        <option value="en cours de livraison">en cours de livraison</option>
+                                                        <option value="livreé">livreé</option>
+                                                        <option value="retournee">retournee</option>
+                                                    </select>
+                                                </form>
+                                            </td>
                                             <td>
                                                 <a href="{{route('livreur.view.coli',$order->id)}}" class="btn btn-success"><i class="fa-solid fa-eye"></i></a>
                                             </td>

@@ -1,8 +1,7 @@
 @extends('is-admin.layout.master')
 
 @section('content')
-    <div class="container-fluid">
-        @if (session('success'))
+    @if (session('success'))
         <div class="alert alert-success" role="alert">
             {{ session('success') }}
         </div>
@@ -16,29 +15,69 @@
             </ul>
         </div>
     @endif
+    <div class="container-fluid">
         <div class="row">
             <div class="container-fluid">
                 <!-- DataTales Example -->
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
-                        
-                        <h6 class="m-0 font-weight-bold text-center">user name : {{ $coli->user->name }}</h6>
-                        <p class="card-text text-center">call : {{$coli->user->phone}}</p>
+                        <h6 class="m-0 font-weight-bold text-primary">tout votre returned colis {{ $colis->count() }}</h6>
                     </div>
                     <div class="card-body">
-                        <center>
-                            <ul class="list-group list-group-flush" style="font-weight: bold">
-                                <li class="list-group-item">destination To : {{$coli->destination}}</li>
-                                <li class="list-group-item">prix :{{$coli->prix}}</li>
-                                <li class="list-group-item">ville :{{$coli->ville}}</li>
-                                <li class="list-group-item">adresse :{{$coli->adresse}}</li>
-                                <li class="list-group-item">produit :{{$coli->produit}}</li>
-                                <li class="list-group-item">note :{{$coli->note}}</li>
-                            </ul>
-                        </center>
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="myTable" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>ID Colis</th>
+                                        <th>Telephone</th>
+                                        <th>destination</th>
+                                        <th>Ville</th>
+                                        <th>prix</th>
+                                        <th>date d'ajout</th>
+                                        <th>Date mise a joure</th>
+                                        <th>Etat</th>
+                                        <th>produit</th>
+                                        <th>action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($colis as $coli)
+                                        <tr>
+                                            <td>{{ $coli->id }}</td>
+                                            <td>{{ $coli->telephone }}</td>
+                                            <td>{{ $coli->destination }}</td>
+                                            <td>{{ $coli->ville }}</td>
+                                            <td>{{ $coli->prix }}</td>
+                                            <td>{{ $coli->created_at }}</td>
+                                            <td>{{ $coli->updated_at }}</td>
+                                            <td>
+                                                <p class="btn btn-danger">Returned</p>
+                                            </td>
+                                            <td>{{ $coli->produit }}</td>
+                                            <td>
+                                                <div class="d-flex">
+                                                    <a href="{{route('colis.show',$coli->id)}}" class="btn btn-primary" style="margin-right: 6px"><i class="fa-solid fa-eye"></i></a>
+                                                    <a href="{{route('colis.edit',$coli->id)}}" class="btn btn-warning" style="margin-right: 6px"><i class="fa-sharp fa-solid fa-pen-to-square"></i></a>
+                                                    <form action="{{ route('colis.destroy', $coli->id) }}"
+                                                        method="post">
+                                                        @csrf
+                                                        @method('delete')
+                                                        <button class="btn btn-danger" type="submit"><i class="fa-solid fa-trash"></i></button>
+                                                        </form>
+                                                </div>       
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
+
             </div>
         </div>
+
+
+
     </div>
 @endsection

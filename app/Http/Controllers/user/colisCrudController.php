@@ -5,6 +5,7 @@ namespace App\Http\Controllers\user;
 use App\Models\couli;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\coli;
 use Illuminate\Support\Facades\Auth;
 
 class colisCrudController extends Controller
@@ -16,7 +17,7 @@ class colisCrudController extends Controller
      */
     public function index()
     {
-        $colis = couli::all();
+        $colis = coli::all()->where('user_id',auth()->user()->id);
         return view('is-admin.content.colis.index',compact('colis'));
     }
 
@@ -38,28 +39,23 @@ class colisCrudController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
         $request->validate([
-            "destination" => "required",
+            "destinataire" => "required",
             "phone" => "required",
             "ville" => "required",
             "prix" => "required",
             "adresse" => "required",
-            "produit" => "required",
-            "note" => "required",
+            "products" => "required",
         ]);
-        couli::create([
+        coli::create([
             "user_id" => Auth::user()->id,
-            "destination" => $request->destination,
+            "destinataire" => $request->destinataire,
             "telephone" => $request->phone,
             "prix" => $request->prix,
             "ville" => $request->ville,
             "adresse" => $request->adresse,
-            "produit" => $request->produit,
+            "products" => $request->products,
             "note" => $request->note,
-            "autre" => $request->autre,
-            "autre" => 'nothing for now',
-            "statue" => 0,
         ]);
         return redirect()->route('colis.index')->with([
             "success" => "colis est bien ajouter"
@@ -74,7 +70,7 @@ class colisCrudController extends Controller
      */
     public function show($id)
     {
-        $coli = couli::find($id);
+        $coli = coli::find($id);
         return view('is-admin.content.colis.view2',compact('coli'));
     }
 
@@ -86,7 +82,7 @@ class colisCrudController extends Controller
      */
     public function edit($id)
     {
-        $coli = couli::find($id);
+        $coli = coli::find($id);
         return view('is-admin.content.colis.update',compact('coli'));
     }
 
@@ -100,28 +96,24 @@ class colisCrudController extends Controller
     public function update(Request $request, $id)
     {
         // dd($request->all());
-        $coli = couli::find($id);
+        $coli = coli::find($id);
         $request->validate([
-            "destination" => "required",
+            "destinataire" => "required",
             "phone" => "required",
             "ville" => "required",
             "prix" => "required",
-            "prix" => "required",
             "adresse" => "required",
-            "produit" => "required",
-            "note" => "required",
+            "products" => "required",
         ]);
         $coli->update([
             "user_id" => Auth::user()->id,
-            "destination" => $request->destination,
+            "destinataire" => $request->destinataire,
             "telephone" => $request->phone,
             "prix" => $request->prix,
             "ville" => $request->ville,
             "adresse" => $request->adresse,
-            "produit" => $request->produit,
+            "products" => $request->products,
             "note" => $request->note,
-            "autre" => 'nothing for now',
-            "statue" => 0,
         ]);
         return redirect()->route('colis.index')->with([
             "success" => "colis est bien modifier"
@@ -136,7 +128,7 @@ class colisCrudController extends Controller
      */
     public function destroy($id)
     {
-        couli::find($id)->delete();
+        coli::find($id)->delete();
         return redirect()->route('colis.index')->with([
             "success" => "colis est bien supprimer"
         ]);

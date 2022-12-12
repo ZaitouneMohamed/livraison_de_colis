@@ -27,13 +27,13 @@
                     <div class="card-body">
                         <center>
                             <ul class="list-group list-group-flush" style="font-weight: bold">
-                                <li class="list-group-item">destination To : {{$coli->destination}}</li>
+                                <li class="list-group-item">destinataire : {{$coli->destinataire}}</li>
                                 <li class="list-group-item">prix :{{$coli->prix}}</li>
                                 <li class="list-group-item">ville :{{$coli->ville}}</li>
                                 <li class="list-group-item">adresse :{{$coli->adresse}}</li>
-                                <li class="list-group-item">produit :{{$coli->produit}}</li>
+                                <li class="list-group-item">produit :{{$coli->products}}</li>
                                 <li class="list-group-item">note :{{$coli->note}}</li>
-                                <li class="list-group-item">place now :{{$coli->order->count()}}</li>
+                                <li class="list-group-item">place now :{{$coli->place_now}}</li>
                             </ul>
                         </center>
                     </div>

@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\admin;
 
-use App\Models\couli;
-use App\Models\order;
+use Carbon\Carbon;
+use App\Models\coli;
 use Illuminate\Http\Request;
 use App\Http\Middleware\user;
-use Illuminate\Support\Facades\DB;
+// use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 
 class adminHomeController extends Controller
@@ -16,40 +16,53 @@ class adminHomeController extends Controller
     }
 
     public function colis() {
-        $colis = couli::all();
+        $colis = coli::all();
         return view('admin.content.colis.index',compact('colis'));
     }
 
     public function view_colis($id) {
-        $coli = couli::find($id);
-        $livreur = DB::table('users')->where('role', 2)->get();
-        return view('admin.content.colis.view',compact('coli',"livreur"));
+        $coli = coli::find($id);
+        return view('admin.content.colis.view',compact('coli'));
+    }
+
+    public function view_order($id) {
+        $order = coli::find($id);
+        return view('admin.content.order.un_order',compact('order'));
+    }
+
+    public function colis_a_traiter() {
+        $colis = coli::all()->where('livreur_id',"!=","Null");
+        return view('admin.content.colis.traiter',compact('colis'));
     }
 
     public function valider_coli(Request $request) {
-        $coli = couli::find($request->coli_id);
+        $coli = coli::find($request->coli_id);
         $coli->update([
-            "statue" => 1
-        ]);
-        order::create([
-            "colis_id" => $request->coli_id,
-            "livreur_id" => $request->livreur_id,
-            "time" => $request->time,
+            "admin_id" => auth()->user()->id,
+            "statue" => "v_admin",
             "total" => $request->total,
-            "statue" => 0,
+            "admin_at" => Carbon::now()->toRfc850String()
         ]);
         return redirect()->route("admin.colis")->with([
             "success" => "coli est valider"
         ]);
     }
 
-    public function refuse_coli($id) {
-        $coli = couli::find($id);
+    public function refuse_coli(Request $request) {
+        $coli = coli::find($request->coli_id);
         $coli->update([
-            "statue" => 2
+            "admin_id" => auth()->user()->id,
+            "statue" => "r_admin",
+            "admin_at" => Carbon::now()->toDateTimeString(),
+            "total" => $request->total
         ]);
         return redirect()->route("admin.colis")->with([
-            "success" => "coli est refuse"
+            "success" => "coli est valider"
         ]);
+    }
+
+    public function orders_list() {
+        $orders = coli::all()->where("statue","v_admin");
+        return view('admin.content.order.index',compact('orders'));
     }
 }

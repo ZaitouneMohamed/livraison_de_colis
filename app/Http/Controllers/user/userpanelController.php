@@ -7,6 +7,8 @@ use App\Models\order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\coli;
+
 // use App\Http\Controllers\user\userpanelController;
 
 class userpanelController extends Controller
@@ -16,18 +18,17 @@ class userpanelController extends Controller
     }
 
     public function traiter_colis() {
-        $colis = order::all()->where('statue',1);
+        $colis = coli::all()->where('statue',"!=","nouveau");
         return view('is-admin.content.colis.traiter',compact('colis'));
     }
 
     public function view_coli($colis_id) {
-        $coli = couli::find($colis_id);
-        $order = DB::table('orders')->where('couli_id', $colis_id);
-        return view("is-admin.content.colis.view",compact('coli','order'));
+        $coli = coli::find($colis_id);
+        return view("is-admin.content.colis.view",compact('coli'));
     }
 
     public function returned_colis() {
-        $coli = couli::where('statue',2);
-        return view('is-admin.content.colis.returned',compact('coli'));
+        $colis = couli::where('statue',2)->get();
+        return view('is-admin.content.colis.returned',compact('colis'));
     }
 }

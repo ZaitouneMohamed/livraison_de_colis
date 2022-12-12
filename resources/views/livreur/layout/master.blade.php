@@ -61,8 +61,8 @@
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="{{route('livreur.colis')}}">mes colis</a>
-                        <a class="collapse-item" href="{{route('livreur.request')}}">Reaquest</a>
+                        <a class="collapse-item" href="{{route('livreur.colis')}}">mes colis</a></a>
+                        {{-- <a class="collapse-item" href="{{route('livreur.request')}}">Reaquest <span class="badge badge-danger badge-counter">2</span></a> --}}
                         <a class="collapse-item" href="{{ route('livreur.colis_list') }}">List Coulis</a>
                     </div>
                 </div>

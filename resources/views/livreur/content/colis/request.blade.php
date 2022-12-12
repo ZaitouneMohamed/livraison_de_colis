@@ -60,11 +60,10 @@
                                                         <input type="hidden" name="order_id" value="{{$order->id}}">
                                                         <button class="btn btn-primary" type="submit"><i class="fa-sharp fa-solid fa-check"></i></button>
                                                     </form>
-                                                    <form action="{{ route('livreur.refuse.order') }}"
-                                                        method="post">
+                                                    <form action="{{ route('livreur.refuse.order') }}" >
                                                         @csrf
-                                                        @method('GET')
-                                                        <input type="hidden" name="order_id">
+                                                        @method('get')
+                                                        <input type="hidden" name="order_id" value="{{$order->id}}">
                                                         <button class="btn btn-danger" type="submit"><i class="fa-solid fa-xmark"></i></button>
                                                     </form>
                                                 </div>

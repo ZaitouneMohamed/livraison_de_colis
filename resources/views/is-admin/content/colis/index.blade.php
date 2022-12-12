@@ -37,7 +37,8 @@
                                     <div class="form-row">
                                         <div class="col form-group">
                                             <label>Destinaire :</label>
-                                            <input type="text" name="destination" class="form-control" placeholder="daistinaire">
+                                            <input type="text" name="destinataire" class="form-control"
+                                                placeholder="destinataire">
                                         </div>
                                         <div class="col form-group">
                                             <label>telephone :</label>
@@ -47,7 +48,7 @@
                                     <div class="form-row">
                                         <div class="col form-group">
                                             <label>ville : </label>
-                                            <input type="text" name="ville" class="form-control" placeholder="email">
+                                            <input type="text" name="ville" class="form-control" placeholder="ville">
                                         </div>
                                         <div class="col form-group">
                                             <label>prix :</label>
@@ -55,29 +56,22 @@
                                         </div>
                                     </div>
                                     <div class="form-row">
-                                            <label>adresse :</label>
-                                            <input type="text" name="adresse" class="form-control"
-                                                placeholder="adresse exacte">
+                                        <label>adresse :</label>
+                                        <input type="text" name="adresse" class="form-control"
+                                            placeholder="adresse exact">
                                     </div>
                                     <div class="form-row">
-                                            <label>produit :</label>
-                                            <input type="test" name="produit" class="form-control"
-                                                placeholder="produit">
+                                        <label>produit :</label>
+                                        <input type="test" name="products" class="form-control" placeholder="produit">
                                     </div>
                                     <div class="form-row">
-                                            <label>note :</label>
-                                            <input type="text" name="note" class="form-control"
-                                                placeholder="note">
-                                    </div>
-                                    <div class="form-row">
-                                        <label>autre :</label>
-                                        <input type="text" name="autre" class="form-control"
-                                            placeholder="autre">
+                                        <label>note :</label>
+                                        <input type="text" name="note" class="form-control" placeholder="note">
                                     </div>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-primary">Send message</button>
+                                    <button type="submit" class="btn btn-primary">Send Colie</button>
                                 </div>
                             </form>
                         </div>
@@ -99,7 +93,6 @@
                                         <th>Ville</th>
                                         <th>prix</th>
                                         <th>date d'ajout</th>
-                                        <th>Date mise a joure</th>
                                         <th>Etat</th>
                                         <th>produit</th>
                                         <th>action</th>
@@ -109,42 +102,34 @@
                                     @foreach ($colis as $coli)
                                         <tr>
                                             <td>{{ $coli->id }}</td>
+                                            <td>{{ $coli->destinataire }}</td>
                                             <td>{{ $coli->telephone }}</td>
-                                            <td>{{ $coli->destination }}</td>
                                             <td>{{ $coli->ville }}</td>
                                             <td>{{ $coli->prix }}</td>
                                             <td>{{ $coli->created_at }}</td>
-                                            <td>{{ $coli->updated_at }}</td>
                                             <td>
-                                                @if ($coli->statue == 0)
-                                                    <p class="btn btn-warning"><i class="fa-solid fa-hourglass-start"></i></p>
-                                                @elseif ($coli->statue == 1)    
-                                                    <p class="btn btn-info"><i class="fa-sharp fa-solid fa-circle-check"></i></p>
-                                                @elseif ($coli->statue == 2)
-                                                    <p class="btn btn-danger"><i class="fa-solid fa-xmark"></i></p>
-                                                @elseif ($coli->statue == 3)
-                                                <p class="btn btn-success"><i class="fa-sharp fa-solid fa-box-check"></i></p>
-                                                @endif
+                                                {{ $coli->statue }}
                                             </td>
-                                            <td>{{ $coli->produit }}</td>
+                                            <td>{{ $coli->products }}</td>
                                             <td>
-                                                @if ($coli->statue == 0 || $coli->statue == 2) 
-                                                <div class="d-flex">
-                                                            <a href="{{route('colis.show',$coli->id)}}" class="btn btn-primary" style="margin-right: 6px"><i class="fa-solid fa-eye"></i></a>
-                                                            <a href="{{route('colis.edit',$coli->id)}}" class="btn btn-warning" style="margin-right: 6px"><i class="fa-sharp fa-solid fa-pen-to-square"></i></a>
+                                                
+                                                    <div class="d-flex">
+                                                        <a href="{{ route('colis.show', $coli->id) }}"
+                                                            class="btn btn-primary" style="margin-right: 6px"><i
+                                                                class="fa-solid fa-eye"></i></a>
+                                                        @if ($coli->statue == 'nouveau')
+                                                            <a href="{{ route('colis.edit', $coli->id) }}"
+                                                                class="btn btn-warning" style="margin-right: 6px"><i
+                                                                    class="fa-sharp fa-solid fa-pen-to-square"></i></a>
                                                             <form action="{{ route('colis.destroy', $coli->id) }}"
                                                                 method="post">
                                                                 @csrf
                                                                 @method('delete')
-                                                                <button class="btn btn-danger" type="submit"><i class="fa-solid fa-trash"></i></button>
+                                                                <button class="btn btn-danger" type="submit"><i
+                                                                        class="fa-solid fa-trash"></i></button>
                                                             </form>
-                                                        </div>
-                                                @endif
-                                                @if ($coli->statue == 1)
-                                                        <a href="{{route('user.coli.view',$coli->id)}}" class="btn btn-primary">
-                                                            <i class="fa-solid fa-eye"></i>
-                                                        </a>
-                                                @endif
+                                                        @endif
+                                                    </div>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -160,4 +145,24 @@
 
 
     </div>
+@endsection
+
+@section("js")
+    <script>
+        var input = document.querySelector('input[name=products]'),
+    tagify = new Tagify(input);
+
+    // using 3-party script "dragsort"
+    // https://github.com/yairEO/dragsort
+    var dragsort = new DragSort(tagify.DOM.scope, {
+        selector:'.'+tagify.settings.classNames.tag,
+        callbacks: {
+            dragEnd: onDragEnd
+        }
+    })
+
+    function onDragEnd(elm){
+        tagify.updateValueByDOMTags()
+    }
+    </script>
 @endsection

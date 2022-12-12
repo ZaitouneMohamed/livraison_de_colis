@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
         integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <title>My liv -Livreur</title>
+    <title>My admin</title>
     <link rel="" href="//cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
     <!-- Custom fonts for this template-->
     <link href="{{ asset('user-panel/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
@@ -57,18 +57,29 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="{{route('admin.colis')}}">List Coulis</a>
-                        <a class="collapse-item" href="cards.html">Coulis A traiter</a>
+                        <a class="collapse-item" href="{{route('admin.colis.traiter')}}">Coulis A traiter</a>
                         <a class="collapse-item" href="cards.html">Archive</a>
                     </div>
                 </div>
             </li>
-
-
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('admin.orders.list') }}">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>order list</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('manage_admin.index') }}">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>manage admin</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('manage_livreur.index') }}">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>livreur</span></a>
+            </li>
             <!-- Divider -->
             <hr class="sidebar-divider">
-
             <!-- Heading -->
-
             <!-- Nav Item - Pages Collapse Menu -->
             {{-- <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
