@@ -33,6 +33,8 @@
                                         <th>total</th>
                                         <th>destinataire</th>
                                         <th>adresse</th>
+                                        <th>place now</th>
+                                        <th>statue</th>
                                         <th>statue</th>
                                         <th>action</th>
                                     </tr>
@@ -45,21 +47,42 @@
                                             <td>{{ $order->total }}</td>
                                             <td>{{ $order->ville }}</td>
                                             <td>{{ $order->adresse }}</td>
+                                            <td>{{ $order->place_now }}</td>
+                                            @if ($order->statue != "livreé" && $order->statue!= "retournee" && $order->statue == "en cours de livraison")
+                                                <td>
+                                                    <form action="{{ route('livreur.place.now') }}" method="post">
+                                                        @csrf
+                                                        @method('POST')
+                                                        <input type="hidden" name="coli_id" value="{{ $order->id }}">
+                                                        <ul class="list-group list-group-flush" style="font-weight: bold">
+                                                            <li class="list-group-item">where is it now : <input type="text"
+                                                                    class="form-controler" name="place_now" id="" placeholder="place now">
+                                                            </li>
+                                                        </ul>
+                                                        <button type="submit" class="btn btn-primary">submit</button>
+                                                    </form>
+                                                </td>
+                                            @else
+                                                <td>{{$order->statue}}</td>
+                                            @endif
                                             <td>{{ $order->statue }}</td>
-                                            <td>
-                                                <form action="{{ route('livreur.change.action') }}" method="post">
-                                                    @csrf
-                                                    <input type="hidden" name="coli_id" value="{{$order->id}}">
-                                                    <select name="statue" id="" onchange="this.form.submit()">
-                                                        <option value="">shose a plane</option>
-                                                        <option value="ramasser">Ramasser</option>
-                                                        <option value="emballer">Emballe</option>
-                                                        <option value="en cours de livraison">en cours de livraison</option>
-                                                        <option value="livreé">livreé</option>
-                                                        <option value="retournee">retournee</option>
-                                                    </select>
-                                                </form>
-                                            </td>
+                                            @if ($order->statue !="livreé" && $order->statue != "retournee")
+                                                <td>
+                                                    <form action="{{ route('livreur.change.action') }}" method="post">
+                                                        @csrf
+                                                        <input type="hidden" name="coli_id" value="{{$order->id}}">
+                                                        <select name="statue" id="" onchange="this.form.submit()">
+                                                            <option value="">shose a plane</option>
+                                                            <option value="ramasser">Ramasser</option>
+                                                            <option value="emballer">Emballe</option>
+                                                            <option value="en cours de livraison">en cours de livraison</option>
+                                                            <option value="livreé">livreé</option>
+                                                            <option value="retournee">retournee</option>
+                                                        </select>
+                                                    </form>
+                                                </td>
+                                            @endif
+
                                             <td>
                                                 <a href="{{route('livreur.view.coli',$order->id)}}" class="btn btn-success"><i class="fa-solid fa-eye"></i></a>
                                             </td>

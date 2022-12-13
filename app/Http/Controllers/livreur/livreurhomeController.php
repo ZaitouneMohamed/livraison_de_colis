@@ -4,8 +4,6 @@ namespace App\Http\Controllers\livreur;
 
 use Carbon\Carbon;
 use App\Models\coli;
-use App\Models\couli;
-use App\Models\order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
@@ -21,41 +19,15 @@ class livreurhomeController extends Controller
         return view('livreur.content.colis.index',compact("orders"));
     }
 
-    // public function colis_request() {
-    //     $orders = order::all()->where('livreur_id',auth()->user()->id)->where('statue',1);
-    //     return view('livreur.content.colis.request',compact('orders'));
-    // }
-
-    // public function accepte_colis(Request $request) {
-    //     $order = order::find($request->order_id);
-    //     $order->update([
-    //         "statue" => 2
-    //     ]);
-    //     return redirect()->route("livreur.home")->with([
-    //         "success" => "commande est accepter"
-    //     ]);
-    // }
-
-    // public function refuse_colis(Request $request) {
-    //     $order = order::find($request->order_id);
-    //     $order->update([
-    //         "statue" => 3,
-    //         "livreur_id" => 0
-    //     ]);
-    //     return redirect()->route("livreur.home")->with([
-    //         "error" => "commande est refuser"
-    //     ]);
-    // }
 
     public function take_order($id) {
         $coli = coli::find($id);
         $coli->update([
             "statue" => "v_livreur",
             "livreur_id" => auth()->user()->id,
-            // "livreur_at" => Carbon::now()->format('Y-m-d H:i:s')
             "livreur_at" => Carbon::now()->toRfc850String()
         ]);
-        return redirect()->route("livreur.home")->with([
+        return redirect()->route("livreur.colis_list")->with([
             "success" => "commande taked succesfly"
         ]);
     }
@@ -113,6 +85,6 @@ class livreurhomeController extends Controller
         $order->update([
             "place_now" => $request->place_now,
         ]);
-        return redirect()->route('livreur.view.coli',$order->id);
+        return redirect()->route('livreur.colis');
     }
 }

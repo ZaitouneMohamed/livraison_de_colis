@@ -57,12 +57,12 @@ class adminHomeController extends Controller
             "total" => $request->total
         ]);
         return redirect()->route("admin.colis")->with([
-            "success" => "coli est valider"
+            "success" => "coli est refusée"
         ]);
     }
 
     public function orders_list() {
-        $orders = coli::all()->where("statue","v_admin");
+        $orders = coli::all()->where("statue","!=","nouveau");
         return view('admin.content.order.index',compact('orders'));
     }
 }

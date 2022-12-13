@@ -18,7 +18,7 @@ class userpanelController extends Controller
     }
 
     public function traiter_colis() {
-        $colis = coli::all()->where('statue',"!=","nouveau");
+        $colis = coli::all()->where('statue',"!=","nouveau")->where('statue',"!=","v_admin")->where('statue',"!=","r_admin");
         return view('is-admin.content.colis.traiter',compact('colis'));
     }
 
@@ -28,7 +28,13 @@ class userpanelController extends Controller
     }
 
     public function returned_colis() {
-        $colis = couli::where('statue',2)->get();
+        $colis = coli::all()->where('statue',"retournee");
         return view('is-admin.content.colis.returned',compact('colis'));
+    }
+
+
+    public function colis_livree(){
+        $colis = coli::all()->where('statue',"livreé");
+        return view('is-admin.content.colis.livree',compact('colis'));
     }
 }

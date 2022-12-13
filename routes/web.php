@@ -47,6 +47,7 @@ Route::middleware(['auth:sanctum', 'verified','user'])->prefix('is-admin')->grou
     Route::resource('employees', employeeController::class); // employee home
     Route::resource('colis', colisCrudController::class); // (CRUD) colis
     Route::get('colis_a_traiter', [userpanelController::class, 'traiter_colis'])->name('user.colis.traiter'); // user colis a traiter
+    Route::get('colis_livree', [userpanelController::class, 'colis_livree'])->name('user.colis.livree'); // user colis livree
     Route::get('view_coli/{colis_id}', [userpanelController::class, 'view_coli'])->name('user.coli.view');
     Route::get('returned_colis', [userpanelController::class, 'returned_colis'])->name('user.coli.returned'); // user les colis returné
 });
@@ -58,7 +59,7 @@ Route::middleware(['auth:sanctum', 'verified','admin'])->prefix('admin')->group(
     Route::get('/coli/{id}', [adminHomeController::class, 'view_colis'])->name("admin.view.coli");
     Route::get('/order/{id}', [adminHomeController::class, 'view_order'])->name("admin.view.order");
     Route::get('/valide_coli', [adminHomeController::class, 'valider_coli'])->name("admin.valider.coli");
-    Route::get('/refuse_coli/{id}', [adminHomeController::class, 'refuse_coli'])->name("admin.refuse.coli");
+    Route::get('/refuse_coli', [adminHomeController::class, 'refuse_coli'])->name("admin.refuse.coli");
     Route::get('/orders_list', [adminHomeController::class, 'orders_list'])->name("admin.orders.list");
     Route::get('/colis_a_traiter', [adminHomeController::class, 'colis_a_traiter'])->name("admin.colis.traiter");
     // Route::get('/send_request', [adminHomeController::class, 'send_request'])->name("admin.send.request");

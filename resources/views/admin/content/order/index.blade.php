@@ -33,6 +33,7 @@
                             <table class="table table-bordered" id="myTable" width="100%" cellspacing="0">
                                 <thead>
                                     <tr>
+                                        <th>ID</th>
                                         <th>Name</th>
                                         <th>phone</th>
                                         <th>Destination</th>
@@ -45,8 +46,9 @@
                                 <tbody>
                                     @foreach ($orders as $order)
                                         <tr>
+                                            <td>{{ $order->id }}</td>
                                             <td>{{ $order->user->name }}</td>
-                                            <td>{{ $order->user->telephone }}</td>
+                                            <td>{{ $order->user->phone }}</td>
                                             <td>{{ $order->destinataire }}</td>
                                             <td>{{ $order->prix }}</td>
                                             <td>{{ $order->ville }}</td>

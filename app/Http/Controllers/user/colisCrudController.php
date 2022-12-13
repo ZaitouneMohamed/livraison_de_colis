@@ -95,7 +95,6 @@ class colisCrudController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // dd($request->all());
         $coli = coli::find($id);
         $request->validate([
             "destinataire" => "required",
@@ -114,6 +113,7 @@ class colisCrudController extends Controller
             "adresse" => $request->adresse,
             "products" => $request->products,
             "note" => $request->note,
+            "statue" =>"nouveau"
         ]);
         return redirect()->route('colis.index')->with([
             "success" => "colis est bien modifier"

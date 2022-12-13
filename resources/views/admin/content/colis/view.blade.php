@@ -75,8 +75,11 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <a href="{{ route('admin.refuse.coli', $coli->id) }}" class="btn btn-danger">refuse
-                                        coli</a>
+                                    <form action="{{ route('admin.refuse.coli') }}" >
+                                        @csrf
+                                        <input type="hidden" name="coli_id" value="{{ $coli->id }}">
+                                        <input type="submit" value="refuse colis" class="btn btn-danger">
+                                    </form>
                             </div>
                             @endif
                         </center>

@@ -21,7 +21,7 @@
                 <!-- DataTales Example -->
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">tout votre colis {{ $colis->count() }}</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">colis a traiter: {{ $colis->count() }}</h6>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -30,7 +30,7 @@
                                     <tr>
                                         <th>ID Colis</th>
                                         <th>Telephone</th>
-                                        <th>destination</th>
+                                        <th>destinataire</th>
                                         <th>Ville</th>
                                         <th>prix</th>
                                         <th>date d'ajout</th>
@@ -44,7 +44,7 @@
                                         <tr>
                                             <td>{{ $coli->id }}</td>
                                             <td>{{ $coli->telephone }}</td>
-                                            <td>{{ $coli->destination }}</td>
+                                            <td>{{ $coli->destinataire }}</td>
                                             <td>{{ $coli->ville }}</td>
                                             <td>{{ $coli->prix }}</td>
                                             <td>{{ $coli->created_at }}</td>

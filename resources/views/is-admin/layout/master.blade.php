@@ -7,10 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.min.js" integrity="sha512-9UR1ynHntZdqHnwXKTaOm1s6V9fExqejKvg5XMawEMToW4sSw+3jtLrYfZPijvnwnnE8Uol1O9BcAskoxgec+g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> --}}
     <meta name="author" content="">
-    <script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.polyfills.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.css" rel="stylesheet" type="text/css" />
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
         integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -56,7 +55,7 @@
                     <span>Employés</span></a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="charts.html">
+                <a class="nav-link" href="">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Boutiques simulées</span></a>
             </li>
@@ -71,6 +70,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="{{ route('colis.index') }}">List Coulis</a>
                         <a class="collapse-item" href="{{ route('user.colis.traiter') }}">Coulis A traiter</a>
+                        <a class="collapse-item" href="{{ route('user.colis.livree') }}">Coulis Livree</a>
                         <a class="collapse-item" href="{{ route('user.coli.returned') }}">Archive</a>
                     </div>
                 </div>
@@ -84,86 +84,44 @@
                 <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="utilities-color.html">Coulis a Renvoyés</a>
-                        <a class="collapse-item" href="utilities-border.html">Coulis Renvoyés</a>
+                        <a class="collapse-item" href="">Coulis a Renvoyés</a>
+                        <a class="collapse-item" href="">Coulis Renvoyés</a>
                     </div>
                 </div>
             </li>
             {{-- coulis end --}}
             <li class="nav-item active">
-                <a class="nav-link" href="charts.html">
+                <a class="nav-link" href="">
                     <i class="fa-solid fa-file-waveform"></i>
                     <span>Bons de Ramassage</span></a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="charts.html">
+                <a class="nav-link" href="">
                     <i class="fa-solid fa-file-waveform"></i>
                     <span>Bons de retour</span></a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="charts.html">
+                <a class="nav-link" href="">
                     <i class="fa-solid fa-file-invoice-dollar"></i>
                     <span>Factures</span></a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="charts.html">
+                <a class="nav-link" href="">
                     <i class="fa-solid fa-flag-checkered"></i>
                     <span>Services suivi</span></a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="charts.html">
+                <a class="nav-link" href="">
                     <i class="fa-solid fa-headset"></i>
                     <span>contact et suivi</span></a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="charts.html">
+                <a class="nav-link" href="">
                     <i class="fa-solid fa-file-pen"></i>
                     <span>Contrat</span></a>
             </li>
 
             <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Addons
-            </div>
-
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-                    aria-expanded="true" aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Pages</span>
-                </a>
-                <div id="collapsePages" class="collapse" aria-labelledby="headingPages"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Login Screens:</h6>
-                        <a class="collapse-item" href="login.html">Login</a>
-                        <a class="collapse-item" href="register.html">Register</a>
-                        <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
-                        <div class="collapse-divider"></div>
-                        <h6 class="collapse-header">Other Pages:</h6>
-                        <a class="collapse-item" href="404.html">404 Page</a>
-                        <a class="collapse-item" href="blank.html">Blank Page</a>
-                    </div>
-                </div>
-            </li>
-
-            <!-- Nav Item - Charts -->
-            <li class="nav-item active">
-                <a class="nav-link" href="charts.html">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Charts</span></a>
-            </li>
-
-            <!-- Nav Item - Tables -->
-            <li class="nav-item">
-                <a class="nav-link" href="tables.html">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Tables</span></a>
-            </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">

@@ -48,10 +48,9 @@
                                             </td>
                                             <td>
                                                 <div class="d-flex">
-                                                    <form action="{{ route('livreur.take.order',$order->id) }}"
-                                                        method="post">
+                                                    <form method="POST" action="{{ route('livreur.take.order',$order->id) }}" >
                                                         @csrf
-                                                        @method('GET')
+                                                        @method("POST")
                                                         <button class="btn btn-primary" type="submit"><i class="fa-sharp fa-solid fa-check"></i></button>
                                                     </form>
                                                 </div>

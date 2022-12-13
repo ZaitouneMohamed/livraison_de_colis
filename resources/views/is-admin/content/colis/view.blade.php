@@ -28,12 +28,27 @@
                         <center>
                             <ul class="list-group list-group-flush" style="font-weight: bold">
                                 <li class="list-group-item">destinataire : {{$coli->destinataire}}</li>
-                                <li class="list-group-item">prix :{{$coli->prix}}</li>
-                                <li class="list-group-item">ville :{{$coli->ville}}</li>
-                                <li class="list-group-item">adresse :{{$coli->adresse}}</li>
-                                <li class="list-group-item">produit :{{$coli->products}}</li>
-                                <li class="list-group-item">note :{{$coli->note}}</li>
-                                <li class="list-group-item">place now :{{$coli->place_now}}</li>
+                                <li class="list-group-item">prix : {{$coli->prix}}</li>
+                                <li class="list-group-item">ville : {{$coli->ville}}</li>
+                                <li class="list-group-item">adresse : {{$coli->adresse}}</li>
+                                <li class="list-group-item">products : {{$coli->products}}</li>
+                                <li class="list-group-item">note : {{$coli->note}}</li>
+                                @if ($coli->statue=="en cours de livraison")
+                                    <li class="list-group-item">place now :{{$coli->place_now}}</li>
+                                @endif
+                                @if ($coli->statue=="ramasser")
+                                    <li class="list-group-item">statue :{{$coli->statue}}</li>
+                                    <li class="list-group-item">ramasser at :{{$coli->ramasser_at}}</li>
+                                @elseif ($coli->statue=="emballer")
+                                    <li class="list-group-item">statue :{{$coli->statue}}</li>
+                                    <li class="list-group-item">emballer at :{{$coli->emballe_at}}</li>
+                                @elseif ($coli->statue=="en cours de livraison")
+                                    <li class="list-group-item">statue :{{$coli->statue}}</li>
+                                    <li class="list-group-item">encours de livraiso at :{{$coli->encours_at}}</li>
+                                @elseif ($coli->statue=="livreé")
+                                    <li class="list-group-item">statue :{{$coli->statue}}</li>
+                                    <li class="list-group-item">livrée at :{{$coli->livreur_at}}</li>
+                                @endif
                             </ul>
                         </center>
                     </div>
