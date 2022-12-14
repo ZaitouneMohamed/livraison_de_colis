@@ -18,7 +18,10 @@ class userpanelController extends Controller
     }
 
     public function traiter_colis() {
-        $colis = coli::all()->where('statue',"!=","nouveau")->where('statue',"!=","v_admin")->where('statue',"!=","r_admin");
+        $colis = coli::all()->where('statue',"!=","nouveau")
+                ->where('statue',"!=","v_admin")
+                ->where('statue',"!=","r_admin")
+                ->where('statue',"!=","livreé");
         return view('is-admin.content.colis.traiter',compact('colis'));
     }
 
