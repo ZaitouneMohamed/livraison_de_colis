@@ -20,7 +20,7 @@ class adminHomeController extends Controller
         return view('admin.content.colis.index',compact('colis'));
     }
 
-    public function view_colis($id) {
+    public function view_coli($id) {
         $coli = coli::find($id);
         return view('admin.content.colis.view',compact('coli'));
     }
@@ -64,5 +64,10 @@ class adminHomeController extends Controller
     public function orders_list() {
         $orders = coli::all()->where("statue","!=","nouveau");
         return view('admin.content.order.index',compact('orders'));
+    }
+
+    public function returned_colis() {
+        $colis = coli::all()->where("statue","retournee");
+        return view('admin.content.colis.returned',compact('colis'));
     }
 }

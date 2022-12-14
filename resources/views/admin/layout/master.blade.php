@@ -34,7 +34,7 @@
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center"
-                href="{{ route('userpanel.home') }}">
+                href="{{route('admin.home')}}">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
@@ -58,7 +58,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="{{route('admin.colis')}}">List Coulis</a>
                         <a class="collapse-item" href="{{route('admin.colis.traiter')}}">Coulis A traiter</a>
-                        <a class="collapse-item" href="cards.html">Archive</a>
+                        <a class="collapse-item" href="{{route('admin.colis.returned')}}">Archive</a>
                     </div>
                 </div>
             </li>

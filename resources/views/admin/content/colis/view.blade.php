@@ -26,21 +26,24 @@
                     <div class="card-body">
                         <center>
                             <div class="card-body" style="font-weight: bold">
-                                <h5 class="card-title">user name :{{ $coli->user->name }}</h5>
+                                <h5 class="card-title">user name : {{ $coli->user->name }}</h5>
                                 <p class="card-text">call : {{ $coli->user->phone }}</p>
                             </div>
                             <ul class="list-group list-group-flush" style="font-weight: bold">
                                 <li class="list-group-item">destinataire : {{ $coli->destinataire }}</li>
-                                <li class="list-group-item">prix :{{ $coli->prix }}</li>
-                                <li class="list-group-item">ville :{{ $coli->ville }}</li>
-                                <li class="list-group-item">adresse :{{ $coli->adresse }}</li>
-                                <li class="list-group-item">produit :{{ $coli->products }}</li>
-                                <li class="list-group-item">note :{{ $coli->note }}</li>
+                                <li class="list-group-item">prix : {{ $coli->prix }}</li>
+                                <li class="list-group-item">Total A payee : {{ $coli->total }} DH</li>
+                                <li class="list-group-item">ville : {{ $coli->ville }}</li>
+                                <li class="list-group-item">adresse : {{ $coli->adresse }}</li>
+                                <li class="list-group-item">produit : {{ $coli->products }}</li>
+                                <li class="list-group-item">note : {{ $coli->note }}</li>
+                                <li class="list-group-item">statue : {{ $coli->statue }}</li>
                             </ul>
                             <div class="card-body">
                                 @if ($coli->statue == 'nouveau')
+                                <div class="d-flex">
                                     <button type="button" class="btn btn-success" data-toggle="modal"
-                                        data-target="#exampleModal" data-whatever="@mdo">valider coli</button>
+                                        data-target="#exampleModal" data-whatever="@mdo" style="margin-left: 370px">valider coli</button>
                                     <div class="modal fade" id="exampleModal" tabindex="-1"
                                         aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog">
@@ -78,8 +81,9 @@
                                     <form action="{{ route('admin.refuse.coli') }}" >
                                         @csrf
                                         <input type="hidden" name="coli_id" value="{{ $coli->id }}">
-                                        <input type="submit" value="refuse colis" class="btn btn-danger">
+                                        <input type="submit" value="refuse colis" class="btn btn-danger" style="margin-left: 10px">
                                     </form>
+                                </div>
                             </div>
                             @endif
                         </center>

@@ -24,11 +24,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Route::prefix('is-admin')->group(function(){
-//     Route::get('/', [userpanelController::class, 'index'])->name('userpanel.home'); // user home
-//     Route::resource('employees', employeeController::class); // employee home
-//     Route::resource('colis', colisCrudController::class); // (CRUD) colis
-// });
 
 Route::middleware([
     'auth:sanctum',
@@ -56,13 +51,13 @@ Route::middleware(['auth:sanctum', 'verified','user'])->prefix('is-admin')->grou
 Route::middleware(['auth:sanctum', 'verified','admin'])->prefix('admin')->group(function () {
     Route::get('/', [adminHomeController::class, 'index'])->name("admin.home");
     Route::get('/colis_list', [adminHomeController::class, 'colis'])->name("admin.colis");
-    Route::get('/coli/{id}', [adminHomeController::class, 'view_colis'])->name("admin.view.coli");
+    Route::get('/coli/{id}', [adminHomeController::class, 'view_coli'])->name("admin.view.coli");
     Route::get('/order/{id}', [adminHomeController::class, 'view_order'])->name("admin.view.order");
     Route::get('/valide_coli', [adminHomeController::class, 'valider_coli'])->name("admin.valider.coli");
     Route::get('/refuse_coli', [adminHomeController::class, 'refuse_coli'])->name("admin.refuse.coli");
     Route::get('/orders_list', [adminHomeController::class, 'orders_list'])->name("admin.orders.list");
     Route::get('/colis_a_traiter', [adminHomeController::class, 'colis_a_traiter'])->name("admin.colis.traiter");
-    // Route::get('/send_request', [adminHomeController::class, 'send_request'])->name("admin.send.request");
+    Route::get('/returned_colis', [adminHomeController::class, 'returned_colis'])->name("admin.colis.returned");
     Route::resource('manage_admin', manageAdminController::class);
     Route::resource('manage_livreur', manageLivreurController::class);
 });
@@ -80,3 +75,5 @@ Route::middleware(['auth:sanctum', 'verified','livreur'])->prefix('livreur')->gr
     Route::post('/take_order/{id}', [livreurhomeController::class, 'take_order'])->name("livreur.take.order");
     Route::post('/change_action', [livreurhomeController::class, 'change_action'])->name("livreur.change.action");
 });
+
+// y4z^ctffJ(J@R&pnby!G

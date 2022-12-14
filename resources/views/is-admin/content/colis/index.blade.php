@@ -36,32 +36,32 @@
                                 <div class="modal-body">
                                     <div class="form-row">
                                         <div class="col form-group">
-                                            <label>Destinaire :</label>
+                                            <label>Destinaire : <span style="color: red">*</span></label>
                                             <input type="text" name="destinataire" class="form-control"
                                                 placeholder="destinataire">
                                         </div>
                                         <div class="col form-group">
-                                            <label>telephone :</label>
+                                            <label>telephone : <span style="color: red">*</span></label>
                                             <input type="text" name="phone" class="form-control" placeholder="phone">
                                         </div>
                                     </div>
                                     <div class="form-row">
                                         <div class="col form-group">
-                                            <label>ville : </label>
+                                            <label>ville : <span style="color: red">*</span></label>
                                             <input type="text" name="ville" class="form-control" placeholder="ville">
                                         </div>
                                         <div class="col form-group">
-                                            <label>prix :</label>
+                                            <label>prix : <span style="color: red">*</span></label>
                                             <input type="number" name="prix" class="form-control" placeholder="prix">
                                         </div>
                                     </div>
                                     <div class="form-row">
-                                        <label>adresse :</label>
+                                        <label>adresse : <span style="color: red">*</span></label>
                                         <input type="text" name="adresse" class="form-control"
                                             placeholder="adresse exact">
                                     </div>
                                     <div class="form-row">
-                                        <label>produit :</label>
+                                        <label>produit : <span style="color: red">*</span></label>
                                         <input type="test" name="products" class="form-control" placeholder="produit">
                                     </div>
                                     <div class="form-row">

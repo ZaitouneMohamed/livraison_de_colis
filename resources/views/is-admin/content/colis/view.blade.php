@@ -42,6 +42,8 @@
                                 @elseif ($coli->statue=="emballer")
                                     <li class="list-group-item">statue :{{$coli->statue}}</li>
                                     <li class="list-group-item">emballer at :{{$coli->emballe_at}}</li>
+                                @elseif ($coli->statue=="r_admin")
+                                    <li class="list-group-item">statue :{{$coli->statue}}</li>
                                 @elseif ($coli->statue=="en cours de livraison")
                                     <li class="list-group-item">statue :{{$coli->statue}}</li>
                                     <li class="list-group-item">encours de livraiso at :{{$coli->encours_at}}</li>

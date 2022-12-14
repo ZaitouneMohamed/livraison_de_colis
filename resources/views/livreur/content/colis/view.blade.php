@@ -31,25 +31,29 @@
                             </div>
                             <ul class="list-group list-group-flush" style="font-weight: bold">
                                 <li class="list-group-item">destinataire : {{ $order->destinataire }}</li>
-                                <li class="list-group-item">prix :{{ $order->prix }}</li>
-                                <li class="list-group-item">ville :{{ $order->ville }}</li>
-                                <li class="list-group-item">adresse :{{ $order->adresse }}</li>
-                                <li class="list-group-item">produit :{{ $order->products }}</li>
-                                <li class="list-group-item">note :{{ $order->note }}</li>
+                                <li class="list-group-item">prix : {{ $order->prix }}</li>
+                                <li class="list-group-item">ville : {{ $order->ville }}</li>
+                                <li class="list-group-item">adresse : {{ $order->adresse }}</li>
+                                <li class="list-group-item">produit : {{ $order->products }}</li>
+                                <li class="list-group-item">Total A Payee : {{ $order->total }}DH</li>
+                                <li class="list-group-item">note : {{ $order->note }}</li>
                                 @if (auth()->user()->id == $order->livreur_id)
-                                    <li class="list-group-item">place now :{{ $order->place_now }}</li>
-                                </ul>
-                                <form action="{{ route('livreur.place.now') }}" method="post">
-                                    @csrf
-                                    @method('POST')
-                                    <input type="hidden" name="coli_id" value="{{ $order->id }}">
-                                    <ul class="list-group list-group-flush" style="font-weight: bold">
-                                        <li class="list-group-item">where is it now : <input type="text"
-                                                class="form-controler" name="place_now" id="" placeholder="place now">
-                                        </li>
+                                    @if ($order->statue == "en cours de livraison")    
+                                        <li class="list-group-item">place now :{{ $order->place_now }}</li>
                                     </ul>
-                                    <button type="submit" class="btn btn-primary">submit</button>
-                                </form>
+                                    <form action="{{ route('livreur.place.now') }}" method="post">
+                                        @csrf
+                                        @method('POST')
+                                        <input type="hidden" name="coli_id" value="{{ $order->id }}">
+                                        <ul class="list-group list-group-flush" style="font-weight: bold">
+                                            <li class="list-group-item">where is it now : <input type="text"
+                                                    class="form-controler" name="place_now" id="" placeholder="place now">
+                                            </li>
+                                        </ul>
+                                        <button type="submit" class="btn btn-primary">submit</button>
+                                    </form>
+                                    @endif
+
                                 <li class="list-group-item">statue : {{ $order->statue }}</li>
                                 <li class="list-group-item">
                                     <form action="{{ route('livreur.change.action') }}" method="post">
