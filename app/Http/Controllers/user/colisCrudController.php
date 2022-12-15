@@ -40,12 +40,12 @@ class colisCrudController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            "destinataire" => "required",
-            "phone" => "required",
-            "ville" => "required",
-            "prix" => "required",
-            "adresse" => "required",
-            "products" => "required",
+            "destinataire" => "required|max:255",
+            "phone" => "required|max:255",
+            "ville" => "required|max:255",
+            "prix" => "required|max:255",
+            "adresse" => "required|max:255",
+            "products" => "required|max:255",
         ]);
         coli::create([
             "user_id" => Auth::user()->id,
@@ -97,12 +97,12 @@ class colisCrudController extends Controller
     {
         $coli = coli::find($id);
         $request->validate([
-            "destinataire" => "required",
-            "phone" => "required",
-            "ville" => "required",
-            "prix" => "required",
-            "adresse" => "required",
-            "products" => "required",
+            "destinataire" => "required|max:255",
+            "phone" => "required|max:255",
+            "ville" => "required|max:255",
+            "prix" => "required|max:255",
+            "adresse" => "required|max:255",
+            "products" => "required|max:255",
         ]);
         $coli->update([
             "user_id" => Auth::user()->id,

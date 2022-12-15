@@ -68,6 +68,15 @@
                     <span>order list</span></a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="{{ route('admin.users.list') }}">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>nouveau users
+                        @if (\App\Models\User::all()->where('role',0)->where('active',0)->count() > 0)
+                            <span class="badge bg-success">{{\App\Models\User::all()->where('role',0)->where('active',0)->count()}}</span>
+                        @endif
+                        </span></a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="{{ route('manage_admin.index') }}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>manage admin</span></a>

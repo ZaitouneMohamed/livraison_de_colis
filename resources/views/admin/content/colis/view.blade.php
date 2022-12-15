@@ -38,6 +38,14 @@
                                 <li class="list-group-item">produit : {{ $coli->products }}</li>
                                 <li class="list-group-item">note : {{ $coli->note }}</li>
                                 <li class="list-group-item">statue : {{ $coli->statue }}</li>
+                                {{-- @if ($coli->statue == "ramasser")
+                                    
+                                @endif --}}
+                                <li class="list-group-item">
+                                    <a class="btn btn-warning" href="{{ route('admin.coli.pdf') }}">
+                                        Dowload PDF
+                                    </a>
+                                </li>
                             </ul>
                             <div class="card-body">
                                 @if ($coli->statue == 'nouveau')

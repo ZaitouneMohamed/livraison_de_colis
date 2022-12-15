@@ -16,7 +16,7 @@ class user
      */
     public function handle(Request $request, Closure $next)
     {
-        if (auth()->user()->role == "0") {
+        if (auth()->user()->role == "0" && auth()->user()->active == "1") {
             return $next($request);
         }
         else{

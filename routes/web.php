@@ -54,10 +54,14 @@ Route::middleware(['auth:sanctum', 'verified','admin'])->prefix('admin')->group(
     Route::get('/coli/{id}', [adminHomeController::class, 'view_coli'])->name("admin.view.coli");
     Route::get('/order/{id}', [adminHomeController::class, 'view_order'])->name("admin.view.order");
     Route::get('/valide_coli', [adminHomeController::class, 'valider_coli'])->name("admin.valider.coli");
+    Route::get('/pdf', [adminHomeController::class, 'coli_pdf'])->name("admin.coli.pdf"); // export pdf
     Route::get('/refuse_coli', [adminHomeController::class, 'refuse_coli'])->name("admin.refuse.coli");
     Route::get('/orders_list', [adminHomeController::class, 'orders_list'])->name("admin.orders.list");
+    Route::get('/users_list', [adminHomeController::class, 'users_list'])->name("admin.users.list");
     Route::get('/colis_a_traiter', [adminHomeController::class, 'colis_a_traiter'])->name("admin.colis.traiter");
     Route::get('/returned_colis', [adminHomeController::class, 'returned_colis'])->name("admin.colis.returned");
+    Route::post('/valid_user', [adminHomeController::class, 'valide_user'])->name("admin.valide.user");
+    Route::post('/invalid_user', [adminHomeController::class, 'invalide_user'])->name("admin.invalide.user");
     Route::resource('manage_admin', manageAdminController::class);
     Route::resource('manage_livreur', manageLivreurController::class);
 });

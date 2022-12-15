@@ -87,6 +87,7 @@
                             <table class="table table-bordered" id="myTable" width="100%" cellspacing="0">
                                 <thead>
                                     <tr>
+                                        <th></th>
                                         <th>ID Colis</th>
                                         <th>Telephone</th>
                                         <th>destination</th>
@@ -101,6 +102,12 @@
                                 <tbody>
                                     @foreach ($colis as $coli)
                                         <tr>
+                                            <td>
+                                                <form action="{{ route('admin.coli.pdf') }}" method="post">
+                                                    @csrf
+                                                    <input type="checkbox" name="colis[]" value="{{ $coli->id }}">
+                                                </form>
+                                            </td>
                                             <td>{{ $coli->id }}</td>
                                             <td>{{ $coli->destinataire }}</td>
                                             <td>{{ $coli->telephone }}</td>
@@ -112,7 +119,6 @@
                                             </td>
                                             <td>{{ $coli->products }}</td>
                                             <td>
-                                                
                                                     <div class="d-flex">
                                                         <a href="{{ route('colis.show', $coli->id) }}"
                                                             class="btn btn-primary" style="margin-right: 6px"><i
@@ -145,4 +151,21 @@
 
 
     </div>
+@endsection
+@section("js")
+
+<script>
+
+$(document).ready(function() {
+    $('#myTable').DataTable( {
+        dom: 'Bfrtip',
+        buttons: [
+            'pdfHtml5',
+            'copyHtml5',
+            'excelHtml5',
+            'csvHtml5',
+            ]
+    } );
+} );
+</script>
 @endsection

@@ -5,9 +5,9 @@ namespace App\Http\Controllers\admin;
 use Carbon\Carbon;
 use App\Models\coli;
 use Illuminate\Http\Request;
-use App\Http\Middleware\user;
-// use Illuminate\Support\Facades\DB;
+use Barryvdh\DomPDF\Facade\Pdf;
 use App\Http\Controllers\Controller;
+use App\Models\User;
 
 class adminHomeController extends Controller
 {
@@ -69,5 +69,32 @@ class adminHomeController extends Controller
     public function returned_colis() {
         $colis = coli::all()->where("statue","retournee");
         return view('admin.content.colis.returned',compact('colis'));
+    }
+
+    public function coli_pdf(Request $request){
+        // $pdf = Pdf::loadView('pdf.invoice');
+        // return $pdf->download('invoice.pdf');
+        dd($request->all());
+    }
+
+    public function users_list() {
+        $users = User::all()->where('role',0)->where('active',0);
+        return view('admin.content.manage_user.index',compact('users'));
+    }
+
+    public function valide_user(Request $request) {
+        $user = User::find($request->user_id);
+        $user->update([
+            "active" => 1
+        ]);
+        return redirect()->route('admin.users.list');
+    }
+
+    public function invalide_user(Request $request) {
+        $user = User::find($request->user_id);
+        $user->update([
+            "active" => 1
+        ]);
+        return redirect()->route('admin.users.list');
     }
 }
