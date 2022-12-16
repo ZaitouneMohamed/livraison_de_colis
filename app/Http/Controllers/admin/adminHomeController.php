@@ -71,14 +71,6 @@ class adminHomeController extends Controller
         return view('admin.content.colis.returned',compact('colis'));
     }
 
-    public function coli_pdf(Request $request){
-        // dd($request->all());
-        // $colis = coli::all();
-        // $pdf = Pdf::loadView('pdf.invoice');
-        // return $pdf->download('invoice.pdf');
-        dd($request->all());
-    }
-
     public function users_list() {
         $users = User::all()->where('role',0)->where('active',0);
         return view('admin.content.manage_user.index',compact('users'));

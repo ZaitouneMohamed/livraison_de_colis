@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\user;
 
+use App\Models\coli;
 use App\Models\couli;
 use App\Models\order;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use App\Models\coli;
 
 // use App\Http\Controllers\user\userpanelController;
 
@@ -28,6 +29,14 @@ class userpanelController extends Controller
     public function view_coli($colis_id) {
         $coli = coli::find($colis_id);
         return view("is-admin.content.colis.view",compact('coli'));
+    }
+
+    public function coli_pdf(Request $request){
+        // dd($request->all());
+        $colis = coli::whereIn("id",$request->colis);
+        $pdf = Pdf::loadView('pdf.invoice',compact('colis'));
+        return $pdf->download('invoice.pdf');
+        // dd($request->all());
     }
 
     public function returned_colis() {

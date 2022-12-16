@@ -44,7 +44,7 @@ Route::middleware(['auth:sanctum', 'verified','user'])->prefix('is-admin')->grou
     Route::get('colis_a_traiter', [userpanelController::class, 'traiter_colis'])->name('user.colis.traiter'); // user colis a traiter
     Route::get('colis_livree', [userpanelController::class, 'colis_livree'])->name('user.colis.livree'); // user colis livree
     Route::get('view_coli/{colis_id}', [userpanelController::class, 'view_coli'])->name('user.coli.view');
-    Route::post('/pdf', [adminHomeController::class, 'coli_pdf'])->name("admin.coli.pdf"); // export pdf
+    Route::post('/pdf', [userpanelController::class, 'coli_pdf'])->name("admin.coli.pdf"); // export pdf
     Route::get('returned_colis', [userpanelController::class, 'returned_colis'])->name('user.coli.returned'); // user les colis returné
 });
 
