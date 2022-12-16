@@ -7,6 +7,6 @@
     <title>Document</title>
 </head>
 <body>
-    <h1 class="btn btn-submit"> {{auth()->user()->name}} say </h1>
+    <h1 class="btn btn-submit"> {{ $colis->count() }} say </h1>
 </body>
 </html>

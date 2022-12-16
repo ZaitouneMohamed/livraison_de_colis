@@ -72,6 +72,8 @@ class adminHomeController extends Controller
     }
 
     public function coli_pdf(Request $request){
+        // dd($request->all());
+        // $colis = coli::all();
         // $pdf = Pdf::loadView('pdf.invoice');
         // return $pdf->download('invoice.pdf');
         dd($request->all());

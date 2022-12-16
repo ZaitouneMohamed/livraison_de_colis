@@ -44,17 +44,18 @@ Route::middleware(['auth:sanctum', 'verified','user'])->prefix('is-admin')->grou
     Route::get('colis_a_traiter', [userpanelController::class, 'traiter_colis'])->name('user.colis.traiter'); // user colis a traiter
     Route::get('colis_livree', [userpanelController::class, 'colis_livree'])->name('user.colis.livree'); // user colis livree
     Route::get('view_coli/{colis_id}', [userpanelController::class, 'view_coli'])->name('user.coli.view');
+    Route::post('/pdf', [adminHomeController::class, 'coli_pdf'])->name("admin.coli.pdf"); // export pdf
     Route::get('returned_colis', [userpanelController::class, 'returned_colis'])->name('user.coli.returned'); // user les colis returné
 });
 
 // for admin
+
 Route::middleware(['auth:sanctum', 'verified','admin'])->prefix('admin')->group(function () {
     Route::get('/', [adminHomeController::class, 'index'])->name("admin.home");
     Route::get('/colis_list', [adminHomeController::class, 'colis'])->name("admin.colis");
     Route::get('/coli/{id}', [adminHomeController::class, 'view_coli'])->name("admin.view.coli");
     Route::get('/order/{id}', [adminHomeController::class, 'view_order'])->name("admin.view.order");
     Route::get('/valide_coli', [adminHomeController::class, 'valider_coli'])->name("admin.valider.coli");
-    Route::get('/pdf', [adminHomeController::class, 'coli_pdf'])->name("admin.coli.pdf"); // export pdf
     Route::get('/refuse_coli', [adminHomeController::class, 'refuse_coli'])->name("admin.refuse.coli");
     Route::get('/orders_list', [adminHomeController::class, 'orders_list'])->name("admin.orders.list");
     Route::get('/users_list', [adminHomeController::class, 'users_list'])->name("admin.users.list");
