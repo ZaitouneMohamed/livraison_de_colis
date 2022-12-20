@@ -30,7 +30,7 @@
                                     <tr>
                                         <th>Name</th>
                                         <th>phone</th>
-                                        <th>Destination</th>
+                                        <th>Destinataire</th>
                                         <th>adresse</th>
                                         <th></th>
                                         <th></th>

@@ -32,11 +32,9 @@ class userpanelController extends Controller
     }
 
     public function coli_pdf(Request $request){
-        // dd($request->all());
-        $colis = coli::whereIn("id",$request->colis);
+        $colis = coli::all()->whereIn("id",$request->colis);
         $pdf = Pdf::loadView('pdf.invoice',compact('colis'));
-        return $pdf->download('invoice.pdf');
-        // dd($request->all());
+        return $pdf->stream('invoice.pdf');
     }
 
     public function returned_colis() {
@@ -48,5 +46,10 @@ class userpanelController extends Controller
     public function colis_livree(){
         $colis = coli::all()->where('statue',"livreé");
         return view('is-admin.content.colis.livree',compact('colis'));
+    }
+
+    public function ramassage() {
+        $colis = coli::all()->where("statue","nouveau");
+        return view('is-admin.content.colis.ramassage',compact('colis'));
     }
 }

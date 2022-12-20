@@ -46,6 +46,7 @@ Route::middleware(['auth:sanctum', 'verified','user'])->prefix('is-admin')->grou
     Route::get('view_coli/{colis_id}', [userpanelController::class, 'view_coli'])->name('user.coli.view');
     Route::post('/pdf', [userpanelController::class, 'coli_pdf'])->name("admin.coli.pdf"); // export pdf
     Route::get('returned_colis', [userpanelController::class, 'returned_colis'])->name('user.coli.returned'); // user les colis returné
+    Route::get('ramassage', [userpanelController::class, 'ramassage'])->name('user.coli.ramassage');
 });
 
 // for admin

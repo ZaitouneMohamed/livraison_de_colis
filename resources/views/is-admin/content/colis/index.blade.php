@@ -87,9 +87,6 @@
                             <table class="table table-bordered" id="myTable" width="100%" cellspacing="0">
                                 <thead>
                                     <tr>
-                                        <th>
-                                            <input type="checkbox" name="" id="">
-                                        </th>
                                         <th>ID Colis</th>
                                         <th>Telephone</th>
                                         <th>destination</th>
@@ -101,16 +98,9 @@
                                         <th>action</th>
                                     </tr>
                                 </thead>
-                                <form action="{{ route('admin.coli.pdf') }}" method="post" id="my_form">
-                                @csrf
-                                @method('post')
                                 <tbody>
-                                    <input type="submit" value="sub" class="btn btn-primary">
                                         @foreach ($colis as $coli)
                                             <tr>
-                                                <td>
-                                                    <input type="checkbox" name="colis[]" value="{{ $coli->id }}" id="">
-                                                </td>
                                                 <td>{{ $coli->id }}</td>
                                                 <td>{{ $coli->destinataire }}</td>
                                                 <td>{{ $coli->telephone }}</td>
@@ -123,7 +113,7 @@
                                                 <td>{{ $coli->products }}</td>
                                                 <td>
                                                         <div class="d-flex">
-                                                            {{-- <a href="{{ route('colis.show', $coli->id) }}"
+                                                                <a href="{{ route('colis.show', $coli->id) }}"
                                                                 class="btn btn-primary" style="margin-right: 6px"><i
                                                                     class="fa-solid fa-eye"></i></a>
                                                             @if ($coli->statue == 'nouveau')
@@ -131,20 +121,18 @@
                                                                     class="btn btn-warning" style="margin-right: 6px"><i
                                                                         class="fa-sharp fa-solid fa-pen-to-square"></i></a>
                                                                 <form action="{{ route('colis.destroy', $coli->id) }}"
-                                                                    method="post">
-                                                                    @csrf
-                                                                    @method('delete')
-                                                                    <button class="btn btn-danger" type="submit"><i
-                                                                            class="fa-solid fa-trash"></i></button>
-                                                                </form>
-                                                            @endif --}}
+                                                                        method="post">
+                                                                        @csrf
+                                                                        @method('delete')
+                                                                        <button class="btn btn-danger" type="submit"><i
+                                                                                class="fa-solid fa-trash"></i></button>
+                                                                    </form>
+                                                            @endif 
                                                         </div>
                                                 </td>
                                             </tr>
                                         @endforeach
                                     </tbody>
-
-                                </form>
                             </table>
                         </div>
                     </div>

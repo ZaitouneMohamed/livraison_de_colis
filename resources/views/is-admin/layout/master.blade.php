@@ -55,12 +55,12 @@
             <li class="nav-item active">
                 <a class="nav-link" href="{{ route('employees.index') }}">
                     <i class="fa-sharp fa-solid fa-user-plus"></i>
-                    <span>Employés</span></a>
+                    <span>Employés (<span style="color: red">*</span>)</span></a>
             </li>
             <li class="nav-item active">
                 <a class="nav-link" href="">
                     <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Boutiques simulées</span></a>
+                    <span>Boutiques simulées(<span style="color: red">*</span>)</span></span></a>
             </li>
             {{-- coulis --}}
             <li class="nav-item active">
@@ -82,7 +82,7 @@
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
                     aria-expanded="true" aria-controls="collapseUtilities">
                     <i class="fa-solid fa-box-open"></i>
-                    <span>Coulis a Rénvoyés</span>
+                    <span>Coulis a Rénvoyés</span>(<span style="color: red">*</span>)</span>
                 </a>
                 <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
@@ -94,34 +94,34 @@
             </li>
             {{-- coulis end --}}
             <li class="nav-item active">
-                <a class="nav-link" href="">
+                <a class="nav-link" href="{{ route('user.coli.ramassage') }}">
                     <i class="fa-solid fa-file-waveform"></i>
                     <span>Bons de Ramassage</span></a>
             </li>
             <li class="nav-item active">
                 <a class="nav-link" href="">
                     <i class="fa-solid fa-file-waveform"></i>
-                    <span>Bons de retour</span></a>
+                    <span>Bons de retour</span>(<span style="color: red">*</span>)</a>
             </li>
             <li class="nav-item active">
                 <a class="nav-link" href="">
                     <i class="fa-solid fa-file-invoice-dollar"></i>
-                    <span>Factures</span></a>
+                    <span>Factures</span>(<span style="color: red">*</span>)</a>
             </li>
             <li class="nav-item active">
                 <a class="nav-link" href="">
                     <i class="fa-solid fa-flag-checkered"></i>
-                    <span>Services suivi</span></a>
+                    <span>Services suivi</span>(<span style="color: red">*</span>)</a>
             </li>
             <li class="nav-item active">
                 <a class="nav-link" href="">
                     <i class="fa-solid fa-headset"></i>
-                    <span>contact et suivi</span></a>
+                    <span>contact et suivi</span>(<span style="color: red">*</span>)</a>
             </li>
             <li class="nav-item active">
                 <a class="nav-link" href="">
                     <i class="fa-solid fa-file-pen"></i>
-                    <span>Contrat</span></a>
+                    <span>Contrat</span>(<span style="color: red">*</span>)</a>
             </li>
 
             <!-- Divider -->

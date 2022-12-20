@@ -18,8 +18,8 @@ class employeeController extends Controller
     public function index()
     {
         // $employees = User::all();
-        $employees = DB::table('users')->where('role', '1')->get();
-        return view('is-admin.content.employees.index',compact('employees'));
+        // $employees = DB::table('users')->where('role', '1')->get();
+        return view('is-admin.content.index');
     }
 
     /**

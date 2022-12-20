@@ -35,7 +35,6 @@
                                         <th>adresse</th>
                                         <th>place now</th>
                                         <th>statue</th>
-                                        <th>statue</th>
                                         <th>action</th>
                                     </tr>
                                 </thead>
@@ -65,7 +64,6 @@
                                             @else
                                                 <td>{{$order->statue}}</td>
                                             @endif
-                                            <td>{{ $order->statue }}</td>
                                             @if ($order->statue !="livreé" && $order->statue != "retournee")
                                                 <td>
                                                     <form action="{{ route('livreur.change.action') }}" method="post">

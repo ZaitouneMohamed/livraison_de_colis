@@ -49,7 +49,7 @@ class colisCrudController extends Controller
         ]);
         coli::create([
             "user_id" => Auth::user()->id,
-            "destinataire" => $request->destinataire,
+            "destinataire" => strip_tags($request->destinataire),
             "telephone" => $request->phone,
             "prix" => $request->prix,
             "ville" => $request->ville,
