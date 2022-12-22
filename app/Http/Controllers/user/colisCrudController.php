@@ -50,12 +50,12 @@ class colisCrudController extends Controller
         coli::create([
             "user_id" => Auth::user()->id,
             "destinataire" => strip_tags($request->destinataire),
-            "telephone" => $request->phone,
-            "prix" => $request->prix,
-            "ville" => $request->ville,
-            "adresse" => $request->adresse,
-            "products" => $request->products,
-            "note" => $request->note,
+            "telephone" => strip_tags($request->phone),
+            "prix" => strip_tags($request->prix),
+            "ville" => strip_tags($request->ville),
+            "adresse" => strip_tags($request->adresse),
+            "products" => strip_tags($request->products),
+            "note" => strip_tags($request->note),
         ]);
         return redirect()->route('colis.index')->with([
             "success" => "colis est bien ajouter"
@@ -106,13 +106,13 @@ class colisCrudController extends Controller
         ]);
         $coli->update([
             "user_id" => Auth::user()->id,
-            "destinataire" => $request->destinataire,
-            "telephone" => $request->phone,
-            "prix" => $request->prix,
-            "ville" => $request->ville,
-            "adresse" => $request->adresse,
-            "products" => $request->products,
-            "note" => $request->note,
+            "destinataire" => strip_tags($request->destinataire),
+            "telephone" => strip_tags($request->phone),
+            "prix" => strip_tags($request->prix),
+            "ville" => strip_tags($request->ville),
+            "adresse" => strip_tags($request->adresse),
+            "products" => strip_tags($request->products),
+            "note" => strip_tags($request->note),
             "statue" =>"nouveau"
         ]);
         return redirect()->route('colis.index')->with([

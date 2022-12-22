@@ -21,24 +21,22 @@
                 <!-- DataTales Example -->
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-center">user : {{ $coli->user->name }}</h6>
-                        <p class="card-text text-center">call : {{$coli->user->phone}}</p>
+                        <h6 class="m-0 font-weight-bold text-center">destinataire : {{ $coli->destinataire }}</h6>
+                        <p class="card-text text-center">call : {{$coli->telephone}}</p>
                     </div>
                     <div class="card-body">
                         <center>
                             <ul class="list-group list-group-flush" style="font-weight: bold">
-                                <li class="list-group-item">destinataire : {{$coli->destinataire}}</li>
-                                <li class="list-group-item">prix : {{$coli->prix}}</li>
+                                <li class="list-group-item">prix : {{$coli->prix}}DH</li>
+                                <li class="list-group-item">total a payée : {{$coli->total}}DH</li>
                                 <li class="list-group-item">ville : {{$coli->ville}}</li>
                                 <li class="list-group-item">adresse : {{$coli->adresse}}</li>
                                 <li class="list-group-item">products : {{$coli->products}}</li>
                                 <li class="list-group-item">note : {{$coli->note}}</li>
-                                @if ($coli->place_now != "")
-                                <li class="list-group-item">place now : {{$coli->place_now}}</li>
-                                @endif
-                                @if ($coli->statue=="ramasser")
-                                    <li class="list-group-item">statue : {{$coli->statue}}</li>
-                                    <li class="list-group-item">ramasser at : {{$coli->ramasser_at}}</li>
+                                <li class="list-group-item">place now : {{$coli->order->place_now}}</li>
+                                @if ($coli->order->statue=="ramasser")
+                                    <li class="list-group-item">statue : {{$coli->order->statue}}</li>
+                                    <li class="list-group-item">ramasser at : {{$coli->order->ramasser_at}}</li>
                                 @elseif ($coli->statue=="v_admin")
                                     <li class="list-group-item">statue : Validee Par {{ $coli->admin->name }}</li>
                                     <li class="list-group-item">valider par admin at : {{$coli->admin_at}}</li>
@@ -47,11 +45,11 @@
                                 @elseif ($coli->statue=="nouveau")
                                     <li class="list-group-item">statue : {{$coli->statue}}</li>
                                 @elseif ($coli->statue=="emballer")
-                                    <li class="list-group-item">statue : {{$coli->statue}}</li>
-                                    <li class="list-group-item">emballer at : {{$coli->emballe_at}}</li>
+                                    <li class="list-group-item">statue : {{$coli->order->statue}}</li>
+                                    <li class="list-group-item">emballer at : {{$coli->order->emballe_at}}</li>
                                 @elseif ($coli->statue=="en cours de livraison")
-                                    <li class="list-group-item">statue : {{$coli->statue}}</li>
-                                    <li class="list-group-item">encours de livraiso at : {{$coli->encours_at}}</li>
+                                    <li class="list-group-item">statue : {{$coli->order->statue}}</li>
+                                    <li class="list-group-item">encours de livraiso at : {{$coli->order->encours_at}}</li>
                                 @elseif ($coli->statue=="livreé")
                                     <li class="list-group-item">statue : {{$coli->statue}}</li>
                                     <li class="list-group-item">livrée at : {{$coli->livreur_at}}</li>

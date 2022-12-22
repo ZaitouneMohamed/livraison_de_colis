@@ -21,14 +21,13 @@
                 <!-- DataTales Example -->
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary"></h6>
+                        <center>
+                            <h5 class="card-title">user name : {{ $coli->user->name }}</h5>
+                            <p class="card-text">call : {{ $coli->telephone }}</p>
+                        </center>
                     </div>
                     <div class="card-body">
                         <center>
-                            <div class="card-body" style="font-weight: bold">
-                                <h5 class="card-title">user name : {{ $coli->user->name }}</h5>
-                                <p class="card-text">call : {{ $coli->user->phone }}</p>
-                            </div>
                             <ul class="list-group list-group-flush" style="font-weight: bold">
                                 <li class="list-group-item">destinataire : {{ $coli->destinataire }}</li>
                                 <li class="list-group-item">prix : {{ $coli->prix }}</li>

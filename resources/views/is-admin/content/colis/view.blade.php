@@ -22,7 +22,7 @@
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
                         <h6 class="m-0 font-weight-bold text-center">user name : {{ $coli->user->name }}</h6>
-                        <p class="card-text text-center">call : {{$coli->user->phone}}</p>
+                        <p class="card-text text-center">call : {{ $coli->telephone}} </p>
                     </div>
                     <div class="card-body">
                         <center>
@@ -33,8 +33,8 @@
                                 <li class="list-group-item">adresse : {{$coli->adresse}}</li>
                                 <li class="list-group-item">products : {{$coli->products}}</li>
                                 <li class="list-group-item">note : {{$coli->note}}</li>
-                                @if ($coli->statue=="en cours de livraison")
-                                    <li class="list-group-item">place now :{{$coli->place_now}}</li>
+                                @if ($coli->statue=="v_livreur")
+                                    <li class="list-group-item">place now :{{$coli->order->place_now}}</li>
                                 @endif
                                 @if ($coli->statue=="ramasser")
                                     <li class="list-group-item">statue :{{$coli->statue}}</li>

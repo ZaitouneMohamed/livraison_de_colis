@@ -21,19 +21,15 @@ return new class extends Migration
             $table->string('prix');
             $table->string('adresse');
             $table->string('products');
+            $table->string("total")->nullable();
             $table->string('note')->nullable();
             $table->integer("user_id")->unsigned();
             $table->integer("livreur_id")->unsigned()->nullable();
             $table->integer("admin_id")->unsigned()->nullable();
+            $table->integer("order_id")->unsigned()->nullable();
             $table->string("statue")->default("nouveau");
-            $table->time("admin_at")->nullable();
-            $table->time("livreur_at")->nullable();
-            $table->time("ramasser_at")->nullable();
-            $table->time("emballe_at")->nullable();
-            $table->time("encours_at")->nullable();
-            $table->time("livrée_at")->nullable();
-            $table->time("anuller_at")->nullable();
-            $table->time("retourner_at")->nullable();
+            $table->string("admin_at")->nullable();
+            $table->string("livreur_at")->nullable();
             $table->timestamps();
         });
     }

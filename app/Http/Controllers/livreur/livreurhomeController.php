@@ -7,6 +7,7 @@ use App\Models\coli;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\order;
 
 class livreurhomeController extends Controller
 {
@@ -19,17 +20,43 @@ class livreurhomeController extends Controller
         return view('livreur.content.colis.index',compact("orders"));
     }
 
+    public function nouveau_order() {
+        order::create([]);
+        return redirect()->route('livreur.order.list');
+    }
 
-    public function take_order($id) {
+    public function order_list() {
+        $orders = order::all();
+        return view('livreur.content.orders.order_list',compact("orders"));
+    }
+
+    public function colis_in_order($id) {
+        $order = order::find($id);
+        $colis_list  = coli::all()
+            ->where("statue","v_admin");
+        $colis_taked = coli::all()
+            ->where("livreur_id" , auth()->user()->id)
+            ->where("order_id" , $id);
+        return view('livreur.content.orders.colis_in_order',compact('colis_taked',"colis_list","order"));
+    }
+
+    public function take_order($id,Request $request) {
         $coli = coli::find($id);
         $coli->update([
             "statue" => "v_livreur",
             "livreur_id" => auth()->user()->id,
-            "livreur_at" => Carbon::now()->toRfc850String()
+            "livreur_at" => Carbon::now()->toRfc850String(),
+            "order_id" => $request->order_id
         ]);
-        return redirect()->route("livreur.colis_list")->with([
-            "success" => "commande taked succesfly"
+        return redirect()->back();
+    }
+
+    public function liv_demarer($id) {
+        $order = order::find($id);
+        $order->update([
+            "statue" => "en cours de livraison"
         ]);
+        return redirect()->back();
     }
 
     public function my_colis() {
@@ -73,6 +100,37 @@ class livreurhomeController extends Controller
             ]);
         }
         return redirect()->route('livreur.colis');
+    }
+
+    public function order_place_now($id,Request $request) {
+        $order = order::find($id);
+        $order->update([
+            "place_now" => $request->city
+        ]);
+        return redirect()->back();
+    }
+
+    public function order_statue($id,Request $request) {
+        $order = order::find($id);
+        if ($request->statue == "ramasser") {
+            $order->update([
+                "statue" => $request->statue,
+                "ramasser_at" => Carbon::now()->toRfc850String()
+            ]);
+        }
+        elseif ($request->statue == "emballer") {
+            $order->update([
+                "statue" => $request->statue,
+                "emballe_at" => Carbon::now()->toRfc850String()
+            ]);
+        }
+        elseif ($request->statue == "en cours de livraison") {
+            $order->update([
+                "statue" => $request->statue,
+                "encours_at" => Carbon::now()->toRfc850String()
+            ]);
+        }
+        return redirect()->back();
     }
 
     public function view_order($id) {

@@ -73,13 +73,17 @@ Route::middleware(['auth:sanctum', 'verified','livreur'])->prefix('livreur')->gr
     Route::get('/', [livreurhomeController::class, 'index'])->name("livreur.home");
     Route::get('/colis', [livreurhomeController::class, 'colis_list'])->name("livreur.colis_list");
     Route::get('/request', [livreurhomeController::class, 'colis_request'])->name('livreur.request');
-    Route::get('/accepte_order', [livreurhomeController::class, 'accepte_colis'])->name('livreur.accepte.order');
-    Route::get('/refuse_order', [livreurhomeController::class, 'refuse_colis'])->name('livreur.refuse.order');
     Route::get('/my_colis', [livreurhomeController::class, 'my_colis'])->name("livreur.colis");
     Route::get('/order/{id}', [livreurhomeController::class, 'view_order'])->name("livreur.view.coli");
     Route::post('/modify_place', [livreurhomeController::class, 'place_now'])->name("livreur.place.now");
     Route::post('/take_order/{id}', [livreurhomeController::class, 'take_order'])->name("livreur.take.order");
     Route::post('/change_action', [livreurhomeController::class, 'change_action'])->name("livreur.change.action");
+    Route::get('/order_list', [livreurhomeController::class, 'order_list'])->name('livreur.order.list');
+    Route::get('/demarer/{id}', [livreurhomeController::class, 'liv_demarer'])->name('livreur.order.demarer'); // livreur demarer aprée collecte les coli
+    Route::get('/colis_order/{id}', [livreurhomeController::class, 'colis_in_order'])->name('livreur.order.colis_list');
+    Route::get('/order_action/{id}', [livreurhomeController::class, 'order_place_now'])->name('livreur.order.place_now');
+    Route::get('/order_statue/{id}', [livreurhomeController::class, 'order_statue'])->name('livreur.order.statue');
+    Route::post('/new_order', [livreurhomeController::class, 'nouveau_order'])->name("livreur.order.nouveau");
 });
 
 // y4z^ctffJ(J@R&pnby!G

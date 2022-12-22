@@ -40,24 +40,24 @@ class employeeController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
-        $request->validate([
-            "name" =>"required",
-            "phone" => "required",
-            "email" => "required|email",
-            "password" =>"required",
-        ]);
-        User::create([
-            "name" => $request->name,
-            "email" => $request->email,
-            "phone" => $request->phone,
-            "password" =>Hash::make($request->password),
-            "active" => 1,
-            "role" => 1
-        ]);
-        return redirect()->route("employees.index")->with([
-            "success" => "employee bien ajouter"
-        ]);
+        dd($request->all());
+        // $request->validate([
+        //     "name" =>"required",
+        //     "phone" => "required",
+        //     "email" => "required|email",
+        //     "password" =>"required",
+        // ]);
+        // User::create([
+        //     "name" => $request->name,
+        //     "email" => $request->email,
+        //     "phone" => $request->phone,
+        //     "password" =>Hash::make($request->password),
+        //     "active" => 1,
+        //     "role" => 1
+        // ]);
+        // return redirect()->route("employees.index")->with([
+        //     "success" => "employee bien ajouter"
+        // ]);
     }
 
     /**

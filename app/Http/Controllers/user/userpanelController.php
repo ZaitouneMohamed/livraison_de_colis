@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\user;
 
 use App\Models\coli;
-use App\Models\couli;
 use App\Models\order;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
@@ -41,7 +40,6 @@ class userpanelController extends Controller
         $colis = coli::all()->where('statue',"retournee");
         return view('is-admin.content.colis.returned',compact('colis'));
     }
-
 
     public function colis_livree(){
         $colis = coli::all()->where('statue',"livreé");

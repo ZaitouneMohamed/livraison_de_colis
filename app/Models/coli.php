@@ -22,15 +22,10 @@ class coli extends Model
         'note',
         'user_id',
         'livreur_id',
+        'order_id',
         'admin_id',
         'admin_at',
         'livreur_at',
-        'ramasser_at',
-        'emballe_at',
-        'encours_at',
-        'livrée_at',
-        'anuller_at',
-        'retourner_at',
     ];
 
     public function user(){
@@ -40,4 +35,9 @@ class coli extends Model
     public function admin(){
         return $this->belongsTo(User::class);
     }
+
+    public function order(){
+        return $this->belongsTo(order::class);
+    }
+
 }

@@ -14,6 +14,8 @@
     <title>My liv - panel</title>
     <link rel="" href="//cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
     <!-- Custom fonts for this template-->
+    <!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link href="{{ asset('user-panel/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
@@ -47,23 +49,29 @@
                     <span>Statistiques</span></a>
             </li>
             <hr class="sidebar-divider">
-            <li class="nav-item active">
+            {{-- <li class="nav-item active">
                 <a class="nav-link" href="{{ route('livreur.colis_list') }}">
                     <i class="fa-sharp fa-solid fa-user-plus"></i>
                     <span>colis list</span></a>
             </li>
+            <hr class="sidebar-divider"> --}}
+            {{-- <li class="nav-item active">
+                <a class="nav-link" href="{{ route('livreur.order.list') }}">
+                    <i class="fa-sharp fa-solid fa-user-plus"></i>
+                    <span></span></a>
+            </li> --}}
             {{-- coulis --}}
             <li class="nav-item active">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fa-solid fa-box"></i>
-                    <span>Coulis</span>
+                    <span>order</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="{{route('livreur.colis')}}">mes colis</a></a>
+                        <a class="collapse-item" href="{{route('livreur.order.list')}}">my orders</a></a>
                         {{-- <a class="collapse-item" href="{{route('livreur.request')}}">Reaquest <span class="badge badge-danger badge-counter">2</span></a> --}}
-                        <a class="collapse-item" href="{{ route('livreur.colis_list') }}">List Coulis</a>
+                        {{-- <a class="collapse-item" href="{{ route('livreur.colis_list') }}">List Coulis</a> --}}
                     </div>
                 </div>
             </li>
