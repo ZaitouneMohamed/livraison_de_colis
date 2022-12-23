@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\user;
 
+use App\Models\coli;
 use App\Models\couli;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use App\Models\coli;
 use Illuminate\Support\Facades\Auth;
 
 class colisCrudController extends Controller
@@ -17,7 +18,8 @@ class colisCrudController extends Controller
      */
     public function index()
     {
-        $colis = coli::all()->where('user_id',auth()->user()->id);
+        // $colis = coli::paginate(1)->where('user_id',auth()->user()->id);
+        $colis = DB::table('colis')->where('user_id',auth()->user()->id)->paginate(1);
         return view('is-admin.content.colis.index',compact('colis'));
     }
 

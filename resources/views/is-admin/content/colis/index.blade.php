@@ -134,6 +134,7 @@
                                         @endforeach
                                     </tbody>
                             </table>
+                            {{ $colis->links() }}
                         </div>
                     </div>
                 </div>
