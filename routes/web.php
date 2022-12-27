@@ -9,16 +9,6 @@ use App\Http\Controllers\user\employeeController;
 use App\Http\Controllers\user\colisCrudController;
 use App\Http\Controllers\user\userpanelController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
 Route::get('/', function () {
     return view('welcome');
@@ -47,6 +37,10 @@ Route::middleware(['auth:sanctum', 'verified','user'])->prefix('is-admin')->grou
     Route::post('/pdf', [userpanelController::class, 'coli_pdf'])->name("admin.coli.pdf"); // export pdf
     Route::get('returned_colis', [userpanelController::class, 'returned_colis'])->name('user.coli.returned'); // user les colis returné
     Route::get('ramassage', [userpanelController::class, 'ramassage'])->name('user.coli.ramassage');
+    Route::get('create_bon_ramassage/{id}', [userpanelController::class, 'colis_for_ramassage'])->name('user.colis.add.bon.ramasser');
+    Route::get('add_bon_livraison', [userpanelController::class, 'add_bon_livraison'])->name('user.coli.add.bon.livraison');
+    Route::get('add_colis_to_bon_livraison', [userpanelController::class, 'colis_with_bons'])->name('user.coli.add.coli.to.bon.livraison');
+    Route::get('colis_bon/{id}', [userpanelController::class, ''])->name('user.coli.bons.list');
 });
 
 // for admin

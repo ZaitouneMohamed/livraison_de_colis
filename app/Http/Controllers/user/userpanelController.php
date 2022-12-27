@@ -3,13 +3,12 @@
 namespace App\Http\Controllers\user;
 
 use App\Models\coli;
-use App\Models\order;
 use Illuminate\Http\Request;
+use App\Models\bons\livrairon;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 
-// use App\Http\Controllers\user\userpanelController;
 
 class userpanelController extends Controller
 {
@@ -48,6 +47,27 @@ class userpanelController extends Controller
 
     public function ramassage() {
         $colis = coli::all()->where("statue","nouveau");
-        return view('is-admin.content.colis.ramassage',compact('colis'));
+        return view('is-admin.content.colis.bon_livraison.index',compact('colis'));
+    }
+
+    public function colis_for_ramassage() {
+        $colis = coli::all()->where("statue","nouveau");
+        return view('is-admin.content.colis.bon_livraison.add_colis',compact('colis'));
+    }
+    
+    
+    public function colis_with_bons(Request $request) {
+        livrairon::create([
+            'user_id' => auth()->user()->id
+        ]);
+        $bon = DB::table('livrairons')->where('user_id',auth()->user()->id)->latest()->first();
+        $updatecolis =$request->coli;
+        foreach ( $updatecolis as $id) {
+            DB::table('colis')->where("id",$id)->update([
+                "B_liv_id" => $bon->id,
+                "statue" => "ramasser"
+            ]);
+        }
+        return redirect()->back();
     }
 }

@@ -5,7 +5,6 @@ namespace App\Http\Controllers\admin;
 use Carbon\Carbon;
 use App\Models\coli;
 use Illuminate\Http\Request;
-use Barryvdh\DomPDF\Facade\Pdf;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 

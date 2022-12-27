@@ -19,7 +19,7 @@ class colisCrudController extends Controller
     public function index()
     {
         // $colis = coli::paginate(1)->where('user_id',auth()->user()->id);
-        $colis = DB::table('colis')->where('user_id',auth()->user()->id)->paginate(1);
+        $colis = DB::table('colis')->where('user_id',auth()->user()->id)->paginate(4);
         return view('is-admin.content.colis.index',compact('colis'));
     }
 

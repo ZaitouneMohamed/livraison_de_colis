@@ -24,6 +24,11 @@ return new class extends Migration
             $table->string("total")->nullable();
             $table->string('note')->nullable();
             $table->integer("user_id")->unsigned();
+            $table->integer("B_liv_id")->unsigned()->nullable();
+            $table->integer("B_ram_id")->unsigned()->nullable();
+            $table->integer("B_dis_id")->unsigned()->nullable();
+            $table->integer("B_pay_id")->unsigned()->nullable();
+            $table->integer("B_ret_id")->unsigned()->nullable();
             $table->integer("livreur_id")->unsigned()->nullable();
             $table->integer("admin_id")->unsigned()->nullable();
             $table->integer("order_id")->unsigned()->nullable();

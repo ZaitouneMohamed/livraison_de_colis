@@ -19,4 +19,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-route::apiResource('colis_api_test' , coliController::class);
+route::apiResource('colis_api' , coliController::class);
