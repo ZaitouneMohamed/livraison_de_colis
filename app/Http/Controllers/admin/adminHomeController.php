@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use App\Models\coli;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\bons\livraison;
 use App\Models\User;
 
 class adminHomeController extends Controller
@@ -86,8 +87,49 @@ class adminHomeController extends Controller
     public function invalide_user(Request $request) {
         $user = User::find($request->user_id);
         $user->update([
-            "active" => 1
+            "active" => 0
         ]);
         return redirect()->route('admin.users.list');
+    }
+
+    public function bon_livraison_list() {
+        $bons = livraison::latest()->where('admin_statue',0)->paginate(5);
+        return view('admin.content.bons.livraison.index',compact('bons'));
+    }
+
+    public function view_bon_livraison($id) {
+        $colis = coli::all()->where("livraison_id",$id);
+        return view('admin.content.bons.livraison.view',compact('colis','id'));
+    }
+
+    public function valide_bon_livraison($id) {
+        $bon = livraison::find($id);
+        $bon->update([
+            "admin_id" => auth()->user()->id,
+            "admin_at" => Carbon::now()->toRfc850String(),
+            "admin_statue" => 1
+        ]);
+        $colis=coli::where("livraison_id",$id);
+        $colis->update([
+            "statue" => "valide par admin"
+        ]);
+        return redirect()->route('admin.bon.livraison.list')->with([
+            "success" => "bon est valider"
+        ]);
+    }
+
+    public function untacked_orders() {
+        $bons = livraison::all()->where('livreur_id',Null);
+        $livreurs = user::all()->where('role',2);
+        return view('admin.content.bons.livraison.untacked',compact('bons','livreurs'));
+    }
+
+    public function send_order_request_to_livreur(Request $request) {
+        $bon = livraison::find($request->bon_id);
+        $bon->update([
+            "livreur_id" => $request->livreur_id,
+            "livreur_statue" => "have request"
+        ]);
+        return redirect()->back();
     }
 }

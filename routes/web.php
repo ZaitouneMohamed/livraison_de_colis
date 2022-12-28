@@ -34,13 +34,13 @@ Route::middleware(['auth:sanctum', 'verified','user'])->prefix('is-admin')->grou
     Route::get('colis_a_traiter', [userpanelController::class, 'traiter_colis'])->name('user.colis.traiter'); // user colis a traiter
     Route::get('colis_livree', [userpanelController::class, 'colis_livree'])->name('user.colis.livree'); // user colis livree
     Route::get('view_coli/{colis_id}', [userpanelController::class, 'view_coli'])->name('user.coli.view');
-    Route::post('/pdf', [userpanelController::class, 'coli_pdf'])->name("admin.coli.pdf"); // export pdf
+    Route::post('/bon_liv_pdf/{id}', [userpanelController::class, 'bon_livraison_pdf'])->name("user.bon.livraison.pdf"); // export pdf
     Route::get('returned_colis', [userpanelController::class, 'returned_colis'])->name('user.coli.returned'); // user les colis returné
     Route::get('ramassage', [userpanelController::class, 'ramassage'])->name('user.coli.ramassage');
     Route::get('create_bon_ramassage/{id}', [userpanelController::class, 'colis_for_ramassage'])->name('user.colis.add.bon.ramasser');
     Route::get('add_bon_livraison', [userpanelController::class, 'add_bon_livraison'])->name('user.coli.add.bon.livraison');
     Route::get('add_colis_to_bon_livraison', [userpanelController::class, 'colis_with_bons'])->name('user.coli.add.coli.to.bon.livraison');
-    Route::get('colis_bon/{id}', [userpanelController::class, ''])->name('user.coli.bons.list');
+    Route::get('colis_bon/{id}', [userpanelController::class, 'colis_list_bons'])->name('user.coli.bons.list');
 });
 
 // for admin
@@ -57,7 +57,14 @@ Route::middleware(['auth:sanctum', 'verified','admin'])->prefix('admin')->group(
     Route::get('/colis_a_traiter', [adminHomeController::class, 'colis_a_traiter'])->name("admin.colis.traiter");
     Route::get('/returned_colis', [adminHomeController::class, 'returned_colis'])->name("admin.colis.returned");
     Route::post('/valid_user', [adminHomeController::class, 'valide_user'])->name("admin.valide.user");
+    Route::post('/valid_bon_liv/{id}', [adminHomeController::class, 'valide_bon_livraison'])->name("admin.valide.bon.livraison");
     Route::post('/invalid_user', [adminHomeController::class, 'invalide_user'])->name("admin.invalide.user");
+    Route::get('/bon_livraison', [adminHomeController::class, 'bon_livraison_list'])->name("admin.bon.livraison.list");
+    Route::get('/view_bon_livraison/{id}', [adminHomeController::class, 'view_bon_livraison'])->name("admin.bon.livraison.view");
+    Route::get('/untacked_orders', [adminHomeController::class, 'untacked_orders'])->name("admin.untacked_colis");
+
+    Route::post('/send_request', [adminHomeController::class, 'send_order_request_to_livreur'])->name("admin.bon.send_request_to_admin");
+
     Route::resource('manage_admin', manageAdminController::class);
     Route::resource('manage_livreur', manageLivreurController::class);
 });

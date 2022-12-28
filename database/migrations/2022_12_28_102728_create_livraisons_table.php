@@ -13,9 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('livrairons', function (Blueprint $table) {
+        Schema::create('livraisons', function (Blueprint $table) {
             $table->id();
             $table->integer("user_id")->unsigned();
+            $table->integer("livreur_id")->unsigned()->nullable();
+            $table->integer("admin_id")->unsigned()->nullable();
+            $table->integer("admin_statue")->default(0);
+            $table->string("livreur_statue")->nullable();
+            $table->string("admin_at")->nullable();
+            $table->string("livreur_at")->nullable();
             $table->timestamps();
         });
     }
@@ -27,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('livrairons');
+        Schema::dropIfExists('livraisons');
     }
 };

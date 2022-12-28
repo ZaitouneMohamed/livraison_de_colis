@@ -20,13 +20,15 @@
             <div class="container-fluid">
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
-                        <h6 class="m-2 font-weight-bold text-primary">vous avez nouveau colis</h6>
+                        <h6 class="m-2 font-weight-bold text-primary">vous avez nouveau colis , bon id (
+                            {{ $colis->count() }} )( {{ $untacked_colis->count() }} )</h6>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-bordered" id="myTable" width="100%" cellspacing="0">
+                            <table class="table table-bordered" width="100%" cellspacing="0">
                                 <thead>
                                     <tr>
+                                        <th></th>
                                         <th>ID Colis</th>
                                         <th>Telephone</th>
                                         <th>destinataire</th>
@@ -38,51 +40,42 @@
                                         <th>action</th>
                                     </tr>
                                 </thead>
-                                    <tbody>
-                                        @foreach ($colis as $coli)
-                                            <tr>
-                                                <td>{{ $coli->id }}</td>
-                                                <td>{{ $coli->destinataire }}</td>
-                                                <td>{{ $coli->telephone }}</td>
-                                                <td>{{ $coli->ville }}</td>
-                                                <td>{{ $coli->prix }}</td>
-                                                <td>{{ $coli->created_at }}</td>
-                                                <td>{{ $coli->statue }}</td>
-                                                <td>{{ $coli->products }}</td>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <a href="{{ route('colis.show', $coli->id) }}"
-                                                            class="btn btn-primary" style="margin-right: 6px"><i
-                                                                class="fa-solid fa-eye"></i></a>
-                                                        @if ($coli->statue == 'nouveau')
-                                                            <a href="{{ route('colis.edit', $coli->id) }}"
-                                                                class="btn btn-warning" style="margin-right: 6px"><i
-                                                                    class="fa-sharp fa-solid fa-pen-to-square"></i></a>
-                                                        @endif
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                    </tbody>
-                                    <input type="submit" value="bon de ramassage" class="btn btn-primary">
-                                </form>
+                                <tbody>
+                                    @foreach ($untacked_colis as $coli)
+                                        <tr>
+                                            <td>
+                                                <input type="checkbox" name="coli[]" value="{{ $coli->id }}"
+                                                    id="">
+                                            </td>
+                                            <td>{{ $coli->id }}</td>
+                                            <td>{{ $coli->destinataire }}</td>
+                                            <td>{{ $coli->telephone }}</td>
+                                            <td>{{ $coli->ville }}</td>
+                                            <td>{{ $coli->prix }}</td>
+                                            <td>{{ $coli->created_at }}</td>
+                                            <td>{{ $coli->statue }}</td>
+                                            <td>{{ $coli->products }}</td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
                             </table>
+                            <button class="btn btn-primary">add to bon</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    <div class="row">
-        <div class="container">
-            <form action="" method="post">
-                @csrf
-                <input type="submit" value="watch tickets" class="btn btn-primary">
-            </form>
-            <form action="" method="post">
-                @csrf
-                <input type="submit" value="dowload bon" class="btn btn-primary">
-            </form>
+        <div class="row">
+            <div class="container">
+                <form action="{{route('user.bon.livraison.pdf',$id)}}" method="post">
+                    @csrf
+                    <input type="submit" value="watch tickets" class="btn btn-primary">
+                </form>
+                <form action="{{route('user.bon.livraison.pdf',$id)}}" method="post">
+                    @csrf
+                    <input type="submit" value="dowload bon" class="btn btn-primary">
+                </form>
+            </div>
         </div>
-    </div>
     </div>
 @endsection

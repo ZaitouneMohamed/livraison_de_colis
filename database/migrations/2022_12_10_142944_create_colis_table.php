@@ -21,20 +21,15 @@ return new class extends Migration
             $table->string('prix');
             $table->string('adresse');
             $table->string('products');
-            $table->string("total")->nullable();
             $table->string('note')->nullable();
             $table->integer("user_id")->unsigned();
-            $table->integer("B_liv_id")->unsigned()->nullable();
+            $table->integer("livrairon_id")->unsigned()->nullable();
             $table->integer("B_ram_id")->unsigned()->nullable();
             $table->integer("B_dis_id")->unsigned()->nullable();
             $table->integer("B_pay_id")->unsigned()->nullable();
             $table->integer("B_ret_id")->unsigned()->nullable();
-            $table->integer("livreur_id")->unsigned()->nullable();
-            $table->integer("admin_id")->unsigned()->nullable();
             $table->integer("order_id")->unsigned()->nullable();
             $table->string("statue")->default("nouveau");
-            $table->string("admin_at")->nullable();
-            $table->string("livreur_at")->nullable();
             $table->timestamps();
         });
     }

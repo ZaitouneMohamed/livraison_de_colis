@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Models\bons\livrairon;
+use App\Models\bons\livraison;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -17,7 +19,7 @@ class coli extends Model
         'adresse',
         'products',
         'total',
-        'B_liv_id',
+        'livrairon_id',
         'B_ram_id',
         'B_dis_id',
         'B_pay_id',
@@ -45,4 +47,7 @@ class coli extends Model
         return $this->belongsTo(order::class);
     }
 
+    public function bon_liv(){
+        return $this->belongsTo(livraison::class);
+    }
 }

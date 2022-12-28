@@ -96,7 +96,7 @@
             <li class="nav-item active">
                 <a class="nav-link" href="{{ route('user.coli.ramassage') }}">
                     <i class="fa-solid fa-file-waveform"></i>
-                    <span>Bons de Ramassage</span></a>
+                    <span>Bons de livraison</span></a>
             </li>
             <li class="nav-item active">
                 <a class="nav-link" href="">

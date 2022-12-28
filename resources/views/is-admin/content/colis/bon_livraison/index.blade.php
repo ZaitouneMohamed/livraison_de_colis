@@ -84,7 +84,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-primary">Send Colie</button>
+                                    <button type="submit" class="btn btn-primary">Add To Bon</button>
                                 </div>
                             </form>
                         </div>
@@ -93,11 +93,37 @@
                 <!-- DataTales Example -->
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">tout votre colis {{ $colis->count() }}</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">bons livraison list {{ $bons->count() }}</h6>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-
+                            <table class="table table-bordered" id="myTable" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>bon ID</th>
+                                        <th>statue</th>
+                                        <th>created at</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($bons as $coli)
+                                        <tr>
+                                            <td>{{ $coli->id }}</td>
+                                            {{ $coli->admin_statue }}
+                                            <td>
+                                                @if ($coli->admin_statue == 0)
+                                                    <p class="btn btn-warning">en attent</p>
+                                                @elseif ($coli->admin_statue == 1)
+                                                    <p class="btn btn-success">received</p>
+                                                @endif
+                                            </td>
+                                            <td> {{ $coli->created_at }} </td>
+                                            <td><a href="" class="btn btn-primary"><i class="fa-solid fa-eye"></i></a></td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
@@ -105,62 +131,4 @@
         </div>
     </div>
 @endsection
-@section('js')
-    <script>
-        // $(document).ready(function() {
-        //     $('#myTable').DataTable( {
-        //         dom: 'Bfrtip',
-        //         // buttons: [
-        //         //     'pdfHtml5',
-        //         //     'copyHtml5',
-        //         //     'excelHtml5',
-        //         //     'csvHtml5',
-        //         //     ]
-        //     } );
-        // } );
-        // button = document.getElementById('btn_sbmt');
 
-        // button.onclick = function f1() {
-        //     document.getElementById('my_form').submit();
-        // }
-    </script>
-@endsection
-
-{{-- @extends('is-admin.layout.master') --}}
-
-{{-- @section('content')
-    @if (session('success'))
-        <div class="alert alert-success" role="alert">
-            {{ session('success') }}
-        </div>
-    @endif
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
-    <div class="container-fluid">
-        <div class="row">
-            <div class="container-fluid">
-                <div class="card shadow mb-4">
-                    <div class="card-header py-3">
-                        <form action="{{ route('user.coli.add.bon.livraison') }}" method="post">
-                            @csrf
-                            @method("GET")
-                            <div class="d-flex">
-                                <input type="submit" value="+ ajouter nouveau bon" class="btn btn-primary">
-                            </div>
-                        </form>
-                    </div>
-                    <div class="card-body">
-                        <h6 class="m-2 font-weight-bold text-primary">vous avez {{ $colis->count() }} nouveau colis</h6>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-@endsection --}}

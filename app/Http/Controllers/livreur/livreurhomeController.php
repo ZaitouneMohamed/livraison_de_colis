@@ -7,6 +7,7 @@ use App\Models\coli;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\bons\livraison;
 use App\Models\order;
 
 class livreurhomeController extends Controller
@@ -16,8 +17,8 @@ class livreurhomeController extends Controller
     }
 
     public function colis_list() {
-        $orders = coli::all()->where("livreur_id","!=",auth()->user()->id)->where("statue","v_admin");
-        return view('livreur.content.colis.index',compact("orders"));
+        $bons = livraison::all()->where("livreur_id","!=",auth()->user()->id)->where("admin_statue",1);
+        return view('livreur.content.colis.index',compact("bons"));
     }
 
     public function nouveau_order() {
@@ -145,4 +146,5 @@ class livreurhomeController extends Controller
         ]);
         return redirect()->route('livreur.colis');
     }
+
 }

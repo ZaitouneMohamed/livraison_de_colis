@@ -63,6 +63,20 @@
                 </div>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="{{route('admin.bon.livraison.list')}}">
+                    <i class="fa-solid fa-file-waveform"></i>
+                    <span>bon de livraison
+                        @if (\App\Models\bons\livraison::all()->where('admin_statue',0)->count() > 0)
+                            <span class="badge bg-danger">{{\App\Models\bons\livraison::all()->where('admin_statue',0)->count()}}</span>
+                        @endif
+                    </span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('admin.untacked_colis') }}">
+                    <i class="fa-solid fa-hourglass-start"></i>
+                    <span>untacked orders</span></a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="{{ route('admin.orders.list') }}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>order list</span></a>
