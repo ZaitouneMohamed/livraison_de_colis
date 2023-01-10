@@ -12,6 +12,7 @@
         integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>My admin</title>
+    @livewireStyles
     <link rel="" href="//cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
     <!-- Custom fonts for this template-->
     <link href="{{ asset('user-panel/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
@@ -386,20 +387,17 @@
     <!-- Bootstrap core JavaScript-->
     <script src="{{ asset('user-panel/vendor/jquery/jquery.min.js') }}"></script>
     <script src=" {{ asset('user-panel/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-
     <!-- Core plugin JavaScript-->
     <script src="{{ asset('user-panel/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
-
     <!-- Custom scripts for all pages-->
     <script src="{{ asset('user-panel/js/sb-admin-2.min.js') }}"></script>
-
     <!-- Page level plugins -->
     <script src="{{ asset('user-panel/vendor/chart.js/Chart.min.js') }}"></script>
-
     <!-- Page level custom scripts -->
     <script src="{{ asset('user-panel/js/demo/chart-area-demo.js') }}"></script>
     <script src="{{ asset('user-panel/js/demo/chart-pie-demo.js') }}"></script>
     <script src="//cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+    @livewireScripts
     @yield('js')
 </body>
 

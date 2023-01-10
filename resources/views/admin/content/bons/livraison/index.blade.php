@@ -34,7 +34,7 @@
                                 <thead>
                                     <tr>
                                         <th>id</th>
-                                        <th>action</th>
+                                        <th>statue</th>
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -43,14 +43,11 @@
                                         <tr>
                                             <td>{{ $bon->id }}</td>
                                             <td>
-                                                <form action="">
-                                                    <select name="" id="">
-                                                        <option value="v1">received</option>
-                                                        <option value="v2">another actions</option>
-                                                        <option value="v2">another actions</option>
-                                                        <option value="v2">another actions</option>
-                                                    </select>
-                                                </form>
+                                                @if ($bon->admin_statue == 0)
+                                                    <span class="badge bg-danger text-white">wait for validation</span>
+                                                @else
+                                                    <span class="badge bg-success text-white">validée</span>
+                                                @endif
                                             </td>
                                             <td>
                                                 <div class="d-flex">

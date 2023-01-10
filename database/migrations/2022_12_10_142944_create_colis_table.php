@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('products');
             $table->string('note')->nullable();
             $table->integer("user_id")->unsigned();
-            $table->integer("livrairon_id")->unsigned()->nullable();
+            $table->integer("livraison_id")->unsigned()->nullable();
             $table->integer("B_ram_id")->unsigned()->nullable();
             $table->integer("B_dis_id")->unsigned()->nullable();
             $table->integer("B_pay_id")->unsigned()->nullable();

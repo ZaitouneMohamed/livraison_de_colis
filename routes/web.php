@@ -34,13 +34,16 @@ Route::middleware(['auth:sanctum', 'verified','user'])->prefix('is-admin')->grou
     Route::get('colis_a_traiter', [userpanelController::class, 'traiter_colis'])->name('user.colis.traiter'); // user colis a traiter
     Route::get('colis_livree', [userpanelController::class, 'colis_livree'])->name('user.colis.livree'); // user colis livree
     Route::get('view_coli/{colis_id}', [userpanelController::class, 'view_coli'])->name('user.coli.view');
-    Route::post('/bon_liv_pdf/{id}', [userpanelController::class, 'bon_livraison_pdf'])->name("user.bon.livraison.pdf"); // export pdf
+    Route::post('bon_liv_pdf/{id}', [userpanelController::class, 'bon_livraison_pdf'])->name("user.bon.livraison.pdf"); // export pdf
     Route::get('returned_colis', [userpanelController::class, 'returned_colis'])->name('user.coli.returned'); // user les colis returné
     Route::get('ramassage', [userpanelController::class, 'ramassage'])->name('user.coli.ramassage');
+    Route::get('coli_in_bon/{id}', [userpanelController::class, 'colis_in_bon'])->name('user.coli.in.bon');
     Route::get('create_bon_ramassage/{id}', [userpanelController::class, 'colis_for_ramassage'])->name('user.colis.add.bon.ramasser');
     Route::get('add_bon_livraison', [userpanelController::class, 'add_bon_livraison'])->name('user.coli.add.bon.livraison');
     Route::get('add_colis_to_bon_livraison', [userpanelController::class, 'colis_with_bons'])->name('user.coli.add.coli.to.bon.livraison');
-    Route::get('colis_bon/{id}', [userpanelController::class, 'colis_list_bons'])->name('user.coli.bons.list');
+    Route::get('colis_bon/{id}', [userpanelController::class, 'colis_list_bons'])->name('user.coli.view_and_add');
+    Route::get('add_coli_to_bon/{id}', [userpanelController::class, 'add_colis_to_bon'])->name('user.add.coli.to.bon');
+
 });
 
 // for admin
@@ -62,9 +65,8 @@ Route::middleware(['auth:sanctum', 'verified','admin'])->prefix('admin')->group(
     Route::get('/bon_livraison', [adminHomeController::class, 'bon_livraison_list'])->name("admin.bon.livraison.list");
     Route::get('/view_bon_livraison/{id}', [adminHomeController::class, 'view_bon_livraison'])->name("admin.bon.livraison.view");
     Route::get('/untacked_orders', [adminHomeController::class, 'untacked_orders'])->name("admin.untacked_colis");
-
     Route::post('/send_request', [adminHomeController::class, 'send_order_request_to_livreur'])->name("admin.bon.send_request_to_admin");
-
+    Route::get('/annuler_request/{id}', [adminHomeController::class, 'annuler_request'])->name('admin.annuler.request');
     Route::resource('manage_admin', manageAdminController::class);
     Route::resource('manage_livreur', manageLivreurController::class);
 });
@@ -84,7 +86,14 @@ Route::middleware(['auth:sanctum', 'verified','livreur'])->prefix('livreur')->gr
     Route::get('/colis_order/{id}', [livreurhomeController::class, 'colis_in_order'])->name('livreur.order.colis_list');
     Route::get('/order_action/{id}', [livreurhomeController::class, 'order_place_now'])->name('livreur.order.place_now');
     Route::get('/order_statue/{id}', [livreurhomeController::class, 'order_statue'])->name('livreur.order.statue');
+    Route::get('/my_request', [livreurhomeController::class, 'order_request'])->name('livreur.colis.request');
+    Route::get('/view_colis', [livreurhomeController::class, 'view_colis_of_bon'])->name('livreur.bon.view.colis');
+    Route::post('/accepte_orders/{id}', [livreurhomeController::class, 'accepte_request'])->name('livreur.bon.accepte');
+    Route::post('/refuse_orders/{id}', [livreurhomeController::class, 'refuse_request'])->name('livreur.bon.refuse');
     Route::post('/new_order', [livreurhomeController::class, 'nouveau_order'])->name("livreur.order.nouveau");
+    Route::get('/my_orders', [livreurhomeController::class, 'my_orders'])->name('livreur.my_orders.list');
+    Route::get('/new_orders', [livreurhomeController::class, 'new_orders'])->name('livreur.orders.new');
+    Route::post('/demarer/{id}', [livreurhomeController::class, 'demarer'])->name("livreur.demarer");
 });
 
 // y4z^ctffJ(J@R&pnby!G

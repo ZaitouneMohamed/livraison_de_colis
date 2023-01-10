@@ -16,10 +16,7 @@ class userpanelController extends Controller
     }
 
     public function traiter_colis() {
-        $colis = coli::all()->where('statue',"!=","nouveau")
-                ->where('statue',"!=","v_admin")
-                ->where('statue',"!=","r_admin")
-                ->where('statue',"!=","livreé");
+        $colis = coli::all()->where('statue',"on road");
         return view('is-admin.content.colis.traiter',compact('colis'));
     }
 
@@ -50,6 +47,8 @@ class userpanelController extends Controller
         return view('is-admin.content.colis.bon_livraison.index',compact('colis','bons'));
     }
 
+    
+
     public function colis_for_ramassage() {
         $colis = coli::all()->where("statue","nouveau");
         return view('is-admin.content.colis.bon_livraison.add_colis',compact('colis'));
@@ -57,8 +56,22 @@ class userpanelController extends Controller
 
     public function colis_list_bons($id) {
         $colis = coli::all()->where('livraison_id',$id);
+        $bon_info = livraison::find($id);
         $untacked_colis = coli::all()->where('statue','nouveau');
-        return view('is-admin.content.colis.bon_livraison.colis',compact('id','colis','untacked_colis'));
+        return view('is-admin.content.colis.bon_livraison.colis',compact('id','colis','bon_info','untacked_colis'));
+    }
+
+
+    public function add_colis_to_bon(Request $request, $id) {
+        $updatedcolis = $request->coli;
+        $bon = livraison::find($id);
+        foreach ($updatedcolis as $info) {
+            DB::table('colis')->where("id",$info)->update([
+                "livraison_id" => $bon->id,
+                "statue" => "ramasser"
+            ]);
+        }
+        return redirect()->back();
     }
     
     public function colis_with_bons(Request $request) {
@@ -73,6 +86,6 @@ class userpanelController extends Controller
                 "statue" => "ramasser"
             ]);
         }
-        return redirect()->route('user.coli.bons.list',$bon->id);
+        return redirect()->route('user.coli.view_and_add',$bon->id);
     }
 }

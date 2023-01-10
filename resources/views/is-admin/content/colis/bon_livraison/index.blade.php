@@ -18,8 +18,11 @@
     <div class="container-fluid">
         <div class="row">
             <div class="container-fluid">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
-                    data-whatever="@mdo"><b><b>+</b></b> bone de livraison</button><br><br>
+                @if ($colis->count() != 0)    
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
+                        data-whatever="@mdo"><b><b>+</b></b> bone de livraison</button><br><br>
+                @endif
+
                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                     aria-hidden="true">
                     <div class="modal-dialog modal-xl">
@@ -110,16 +113,17 @@
                                     @foreach ($bons as $coli)
                                         <tr>
                                             <td>{{ $coli->id }}</td>
-                                            {{ $coli->admin_statue }}
                                             <td>
                                                 @if ($coli->admin_statue == 0)
-                                                    <p class="btn btn-warning">en attent</p>
+                                                    <span class="badge bg-warning text-white">en attent</span>
                                                 @elseif ($coli->admin_statue == 1)
-                                                    <p class="btn btn-success">received</p>
+                                                    <span class="badge bg-success text-white">received</span>
                                                 @endif
                                             </td>
                                             <td> {{ $coli->created_at }} </td>
-                                            <td><a href="" class="btn btn-primary"><i class="fa-solid fa-eye"></i></a></td>
+                                            <td>
+                                                <a href="{{ route('user.coli.view_and_add',$coli->id) }}" class="btn btn-primary"><i class="fa-solid fa-eye"></i></a>
+                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>

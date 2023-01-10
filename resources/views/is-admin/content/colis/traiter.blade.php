@@ -48,14 +48,7 @@
                                             <td>{{ $coli->ville }}</td>
                                             <td>{{ $coli->prix }}</td>
                                             <td>{{ $coli->created_at }}</td>
-                                            <td>
-                                                @if ($coli->place_now == "")
-                                                    <p class="btn btn-warning"><i class="fa-solid fa-spinner"></i></p>
-                                                
-                                                @else
-                                                    {{ $coli->place_now }}
-                                                @endif
-                                            </td>
+                                            <td>{{ $coli->statue }}</td>
                                             <td>{{ $coli->products }}</td>
                                             <td>
                                                 <a href="{{route('user.coli.view',$coli->id)}}" class="btn btn-primary">

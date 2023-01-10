@@ -30,9 +30,9 @@
     <div id="wrapper">
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
             <a class="sidebar-brand d-flex align-items-center justify-content-center"
-                href="{{ route('userpanel.home') }}">
+                href="{{ route('livreur.home') }}">
                 <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
+                    <i class="fa-sharp fa-solid fa-truck"></i>
                 </div>
                 <div class="sidebar-brand-text mx-3">LIVREUR</div>
             </a>
@@ -44,16 +44,21 @@
             </li>
             <hr class="sidebar-divider">
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('livreur.home') }}">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                <a class="nav-link" href="{{ route('livreur.colis.request') }}">
+                    <i class="fa-solid fa-hourglass-start"></i>
                     <span>Request
                         @if (\App\Models\bons\livraison::where('livreur_id',auth()->user()->id)->where('livreur_statue',"have request")->count() > 0)
                             <span class="badge bg-success">{{\App\Models\bons\livraison::where('livreur_id',auth()->user()->id)->where('livreur_statue',"have request")->count()}}</span>
-                            @endif
+                        @endif
                         </span></a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('livreur.my_orders.list')}}">
+                    <i class="fa-regular fa-box-taped"></i>
+                    <span>my Orders</span></a>
+            </li>
             <li class="nav-item active">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                <a class="nav-link collapsed" href="" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fa-solid fa-box"></i>
                     <span>order</span>
@@ -61,10 +66,15 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="{{route('livreur.colis_list')}}">Orders List <span class="badge badge-danger badge-counter">2</span></a>
-                        {{-- <a class="collapse-item" href="{{route('livreur.order.list')}}">my orders</a></a> --}}
+                        {{-- <a class="collapse-item" href="">my orders</a></a> --}}
                         {{-- <a class="collapse-item" href="{{ route('livreur.colis_list') }}">List Coulis</a> --}}
                     </div>
                 </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('livreur.orders.new')}}">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Nouveau Orders</span></a>
             </li>
 
 

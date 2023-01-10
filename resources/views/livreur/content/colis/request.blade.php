@@ -21,13 +21,13 @@
                 <!-- DataTales Example -->
                 <div class="card shadow mb-4">
                     @if ($orders->count() == 0)
-                    <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">colis request {{ $orders->count() }} - No Request Yet</h6>
-                    </div>
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">colis request {{ $orders->count() }} - No Request Yet</h6>
+                        </div>
                     @else
-                    <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">colis rrequest {{ $orders->count() }}</h6>
-                    </div>
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">colis rrequest {{ $orders->count() }}</h6>
+                        </div>
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table table-bordered" id="myTable" width="100%" cellspacing="0">
@@ -49,20 +49,22 @@
                                             <td>{{ $order->colis->destination }}</td>
                                             <td>{{ $order->colis->adresse }}</td>
                                             <td>
-                                                <a href="" class="btn btn-success"><i class="fa-solid fa-eye"></i></a>
+                                                <a href="" class="btn btn-danger">
+                                                    <i class="fa-solid fa-eye"></i>
+                                                </a>
                                             </td>
                                             <td>
                                                 <div class="d-flex">
                                                     <form action="{{ route('livreur.accepte.order') }}"
                                                         method="post">
                                                         @csrf
-                                                        @method('GET')
+                                                        @method('POST')
                                                         <input type="hidden" name="order_id" value="{{$order->id}}">
                                                         <button class="btn btn-primary" type="submit"><i class="fa-sharp fa-solid fa-check"></i></button>
                                                     </form>
-                                                    <form action="{{ route('livreur.refuse.order') }}" >
+                                                    <form action="{{ route('livreur.refuse.order') }}" method="POST">
                                                         @csrf
-                                                        @method('get')
+                                                        @method('POST')
                                                         <input type="hidden" name="order_id" value="{{$order->id}}">
                                                         <button class="btn btn-danger" type="submit"><i class="fa-solid fa-xmark"></i></button>
                                                     </form>

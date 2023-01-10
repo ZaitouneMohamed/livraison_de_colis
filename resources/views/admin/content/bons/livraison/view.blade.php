@@ -32,11 +32,31 @@
                             </div>
                         @endforeach
                     </div>
-                    <form action="{{ route('admin.valide.bon.livraison',$id) }}" method="POST">
-                        @csrf
-                        @method("POST")
-                        <button type="submit" class="btn btn-success mt-3"> received</button>
-                    </form>
+                    @if ( $bon->admin_statue == 0 )
+                        <form action="{{ route('admin.valide.bon.livraison',$bon->id) }}" method="POST">
+                            @csrf
+                            @method("POST")
+                            <button type="submit" class="btn btn-success mt-3"> received</button>
+                        </form>
+                    @elseif ($bon->livreur_id == null )
+                    <br>
+                        <form action="{{route('admin.bon.send_request_to_admin')}}" method="POST">
+                            @csrf
+                            <input type="hidden" name="bon_id" value="{{$bon->id}}">
+                            <select class="form-select" name="livreur_id"  onchange="this.form.submit()" aria-label="Default select example">
+                                <option selected>shose a livreur</option>
+                                @foreach ($livreurs as $livreur)
+                                    <option value="{{ $livreur->id }}">{{ $livreur->name }}</option>  
+                                @endforeach
+                            </select>
+                        </form>
+                    @elseif ( $bon->livreur_statue == "have request" )
+                        waiting for answer
+                        <form action="{{route('admin.annuler.request',$bon->id)}}">
+                            @csrf
+                            <button type="submit" class="btn btn-danger">annuler </button>
+                        </form>
+                    @endif
                 </div>
             </div>
         </div>

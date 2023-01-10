@@ -93,13 +93,15 @@ class adminHomeController extends Controller
     }
 
     public function bon_livraison_list() {
-        $bons = livraison::latest()->where('admin_statue',0)->paginate(5);
+        $bons = livraison::latest()->paginate(5);
         return view('admin.content.bons.livraison.index',compact('bons'));
     }
 
     public function view_bon_livraison($id) {
         $colis = coli::all()->where("livraison_id",$id);
-        return view('admin.content.bons.livraison.view',compact('colis','id'));
+        $bon= livraison::find($id);
+        $livreurs = user::all()->where('role',2);
+        return view('admin.content.bons.livraison.view',compact('colis','bon','livreurs'));
     }
 
     public function valide_bon_livraison($id) {
@@ -129,6 +131,14 @@ class adminHomeController extends Controller
         $bon->update([
             "livreur_id" => $request->livreur_id,
             "livreur_statue" => "have request"
+        ]);
+        return redirect()->back();
+    }
+
+    public function annuler_request($id) {
+        livraison::find($id)->update([
+            "livreur_id" => null,
+            "livreur_statue" => null
         ]);
         return redirect()->back();
     }

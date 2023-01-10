@@ -80,7 +80,6 @@
                                                     </form>
                                                 </td>
                                             @endif
-
                                             <td>
                                                 <a href="{{route('livreur.view.coli',$order->id)}}" class="btn btn-success"><i class="fa-solid fa-eye"></i></a>
                                             </td>

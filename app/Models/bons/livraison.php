@@ -23,7 +23,7 @@ class livraison extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function bon_liv(){
+    public function bon_livraison(){
         return $this->hasMany(coli::class);
     }
 

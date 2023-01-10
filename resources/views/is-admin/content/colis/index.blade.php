@@ -87,15 +87,15 @@
                             <table class="table table-bordered" id="myTable" width="100%" cellspacing="0">
                                 <thead>
                                     <tr>
-                                        <th>ID Colis</th>
+                                        <th>Colis ID</th>
+                                        <th>Destinataire</th>
                                         <th>Telephone</th>
-                                        <th>destination</th>
                                         <th>Ville</th>
-                                        <th>prix</th>
-                                        <th>date d'ajout</th>
+                                        <th>Prix</th>
+                                        <th>Date d'ajout</th>
                                         <th>Etat</th>
-                                        <th>produit</th>
-                                        <th>action</th>
+                                        <th>Products</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -108,7 +108,7 @@
                                                 <td>{{ $coli->prix }}</td>
                                                 <td>{{ $coli->created_at }}</td>
                                                 <td>
-                                                    {{ $coli->statue }}
+                                                    <span class="badge bg-success text-white">{{ $coli->statue }}</span>
                                                 </td>
                                                 <td>{{ $coli->products }}</td>
                                                 <td>

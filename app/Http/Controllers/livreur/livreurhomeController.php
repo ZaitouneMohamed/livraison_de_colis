@@ -41,16 +41,16 @@ class livreurhomeController extends Controller
         return view('livreur.content.orders.colis_in_order',compact('colis_taked',"colis_list","order"));
     }
 
-    public function take_order($id,Request $request) {
-        $coli = coli::find($id);
-        $coli->update([
-            "statue" => "v_livreur",
-            "livreur_id" => auth()->user()->id,
-            "livreur_at" => Carbon::now()->toRfc850String(),
-            "order_id" => $request->order_id
-        ]);
-        return redirect()->back();
-    }
+    // public function take_order($id,Request $request) {
+    //     $coli = coli::find($id);
+    //     $coli->update([
+    //         "statue" => "v_livreur",
+    //         "livreur_id" => auth()->user()->id,
+    //         "livreur_at" => Carbon::now()->toRfc850String(),
+    //         "order_id" => $request->order_id
+    //     ]);
+    //     return redirect()->back();
+    // }
 
     public function liv_demarer($id) {
         $order = order::find($id);
@@ -147,4 +147,64 @@ class livreurhomeController extends Controller
         return redirect()->route('livreur.colis');
     }
 
+    public function accepte_request($id) {
+        $bon = livraison::find($id);
+        $bon->update([
+            "livreur_statue" => "tacked",
+            "livreur_at" => Carbon::now()->toRfc850String()
+        ]);
+        coli::where('livraison_id',$id)->update([
+            "statue" => "tacked by livreur"
+        ]);
+        return redirect()->back();
+    }
+
+    public function my_orders() {
+        $orders = livraison::all()->where('livreur_id',auth()->user()->id)->where('livreur_statue','tacked');
+        return view('livreur.content.colis.my_orders',compact('orders'));
+    }
+
+    public function refuse_request($id) {
+        $bon = livraison::find($id);
+        $bon->update([
+            "livreur_statue" => null,
+            "livreur_id" => null,
+            "livreur_statue" => null
+        ]);
+        return redirect()->back();
+    }
+
+    public function order_request() {
+        $bons = livraison::all()->where('livreur_id',auth()->user()->id)->where('livreur_statue','have request');
+        return view('livreur.content.orders.request',compact('bons'));
+    }
+
+    public function view_colis_of_bon(Request $request) {
+        $bon_id =$request->bon_id; 
+        $colis = coli::all()->where('livraison_id',$bon_id);
+        $bon = livraison::find($bon_id);
+        return view('livreur.content.orders.view_colis',compact('colis','bon_id','bon'));
+    }
+
+    public function new_orders() {
+        $orders = livraison::all()->where('admin_statue',1)->where('livreur_id',null);
+        return view('livreur.content.colis.new_orders',compact('orders'));
+    }
+
+    public function take_order($id) {
+        livraison::find($id)->update([
+            "livreur_id" => auth()->user()->id,
+            "livreur_statue" => "tacked"
+        ]);
+        return redirect()->route('livreur.my_orders.list');
+    }
+
+    public function demarer($id) {
+        $bon = livraison::find($id);
+        $bon->update([
+            "livreur_statue" => "on road"
+        ]);
+        // $coli_id = $bon-
+        return redirect()->back();
+    }
 }
