@@ -18,11 +18,13 @@
     <div class="container-fluid">
         <div class="row">
             <div class="container-fluid">
-                @if ($bon_info->admin_statue == 0)  
+
                     <div class="card shadow mb-4">
+                        @if ($bon_info->admin_statue == 0)
                         <div class="card-header py-3">
                                 <h6 class="m-2 font-weight-bold text-primary">vous avez {{ $untacked_colis->count() }} nouveau colis</h6>
                             </div>
+                        @endif
                             @if ($untacked_colis->count() > 0)
                                 <div class="card-body">
                                         <div class="table-responsive">
@@ -60,14 +62,13 @@
                                                         </tr>
                                                     @endforeach
                                                 </tbody>
-                                            </table>     
+                                            </table>
                                             <button class="btn btn-primary" type="submit">add to bon</button>
                                         </form>
                                         </div>
                                 </div>
                             @endif
                     </div>
-                @endif
             </div>
         </div>
         <div class="text-center">

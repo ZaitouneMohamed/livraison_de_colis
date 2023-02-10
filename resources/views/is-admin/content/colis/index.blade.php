@@ -127,7 +127,7 @@
                                                                         <button class="btn btn-danger" type="submit"><i
                                                                                 class="fa-solid fa-trash"></i></button>
                                                                     </form>
-                                                            @endif 
+                                                            @endif
                                                         </div>
                                                 </td>
                                             </tr>

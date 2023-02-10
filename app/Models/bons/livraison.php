@@ -27,4 +27,5 @@ class livraison extends Model
         return $this->hasMany(coli::class);
     }
 
+
 }

@@ -18,7 +18,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="container-fluid">
-                @if ($colis->count() != 0)    
+                @if ($colis->count() != 0)
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
                         data-whatever="@mdo"><b><b>+</b></b> bone de livraison</button><br><br>
                 @endif
@@ -120,7 +120,7 @@
                                                     <span class="badge bg-success text-white">received</span>
                                                 @endif
                                             </td>
-                                            <td> {{ $coli->created_at }} </td>
+                                            <td> {{ $coli->created_at->diffForHumans()}}</td>
                                             <td>
                                                 <a href="{{ route('user.coli.view_and_add',$coli->id) }}" class="btn btn-primary"><i class="fa-solid fa-eye"></i></a>
                                             </td>

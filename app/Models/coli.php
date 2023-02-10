@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\bons\livrairon;
 use App\Models\bons\livraison;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -50,4 +51,16 @@ class coli extends Model
     public function bon_liv(){
         return $this->belongsTo(livraison::class);
     }
+
+    // public function getCreatedAtAttribute($value){
+    //     return Carbon::parse($value)->diffForHumans();
+    // }
+
+    // User.php
+
+    public function getCreatedAtAttribute($value)
+    {
+        return $value->diffForHumans();
+    }
+
 }
